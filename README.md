@@ -42,3 +42,18 @@ The main should then call the parser and parse the test file, generating and Abs
 then the main file calls the Elaboration function, which does it's thing and generates another output intermediate file "Test1_elab" or something.
 
 We go through each step and generate a new file each time, until we have made the final step and we get a final netlist file.
+
+
+Final segmentation of the porject:
+
+1. Main file, reads input file and orchestrates calls for other modules. (main.py)
+
+2. Parsing, Inputs .v source file, Wraps PyVerilog to generate AST (stage_parser.py)
+
+3. High level elaboration, input AST, flattens hierarchy (resolves includes and module initiations), Sequential inference(identifies "always @(posedge) blocks and marks signals as D-flip-flops), resolves parameters (like WIDTH=32), outputs high-level netlist (stage_elaboration.py)
+
+4. Bit blasting, input high-level netlist, expands signals into individual wire objects, replaces operators with gates (+,-,== to adders, XORs etc.), replaces if/else with MUX structures, outputs list of primitives (stage_bitblast.py)
+
+5. Export: input list of primitives / gate level netlist, translates into target output format(BLIF).(stage_export.py)
+
+6. Define Python classes necessary for the netlist(netlist.py)
