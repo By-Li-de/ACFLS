@@ -16,7 +16,7 @@ TODO:
 
 - Export: writes a netlist into a standard format.
 
-- get a reference netlist for comparion
+- get a reference netlist for comparison
 
 We do Verilog, because it's easier than VHDL. 
 Ideally the CPU testproject is limited and unoptimized, leaving out more complex types or features of Verilog. 
@@ -34,3 +34,11 @@ ideally we can do without structs, enums, generate blocks, initial blocks, delay
 I will also ask if we need to make the lexer/parser ourselves or if we can use an existing tool for that.
 In terms of language, we can use any language. I would prefer Python but it will depend on the code available as reference online. 
 
+The Program should work as follows:
+
+launch the main file while specifying an input file like "Pyothon LogSyn Test1" or something like that
+The main should then call the parser and parse the test file, generating and Abstract Syntax Tree, which it should save as a seperate file like "Test1_AST" 
+
+then the main file calls the Elaboration function, which does it's thing and generates another output intermediate file "Test1_elab" or something.
+
+We go through each step and generate a new file each time, until we have made the final step and we get a final netlist file.
