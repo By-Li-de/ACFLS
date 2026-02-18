@@ -58,5 +58,18 @@ Final segmentation of the porject:
 
 6. Define Python classes necessary for the netlist(netlist.py)
 
+RISC-V CORE CODE FILES HANDLED:
+ALUControl.v :  O
+Control.v:      X
+Mem_Model.v:    X
+REG_FILE.v:     X
+RISCV_CLKRST.v: X
+RISCV_TOP.v:    X
+
 ATTENTION: MAKE SURE TO INSTALL PYVERILOG WITH "pip install pyverilog" BEFORE RUNNING
 If you encounter WinError2: install iverilog and during installation check "Add to PATH" box. 
+
+LIMITATIONS: Our project does NOT handle multiple file inputs, each verilog file MUST be synthesized individually to ensure correctness.
+We do not check for dependencies or logic errors, we assume the verilog code to be correct. The goal is not to create a functioning Linter.(The parser may catch syntax errors.)
+
+Credit: RISC-V CPU code: https://github.com/hushon/Tiny-RISCV-CPU/tree/master

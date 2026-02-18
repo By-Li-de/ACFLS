@@ -1,150 +1,2314 @@
-.model counter
-.inputs clk enable rst
-.outputs count_0 count_1 count_2 count_3
+.model ALUControl
+.inputs ALUOp_0 ALUOp_1 ALUOp_2 ALUOp_3 ALUOp_4 ALUOp_5 ALUOp_6 funct3_0 funct3_1 funct3_2 funct7_0 funct7_1 funct7_2 funct7_3 funct7_4 funct7_5 funct7_6
+.outputs ALU_operation_0 ALU_operation_1 ALU_operation_2 ALU_operation_3 ALU_operation_4
 
 .names CONST0
 
 .names CONST1
 1
 
-.names count_0 CONST1 tmp_xor_0
-01 1
+.names ALUOp_0 CONST1 tmp_xor_eq_0
 10 1
-
-.names tmp_xor_0 CONST0 tmp_add_0_0
 01 1
+.names tmp_xor_eq_0 tmp_xnor_eq_1
+0 1
+.names ALUOp_1 CONST1 tmp_xor_eq_2
 10 1
-
-.names count_0 CONST1 tmp_and_1
+01 1
+.names tmp_xor_eq_2 tmp_xnor_eq_3
+0 1
+.names ALUOp_2 CONST1 tmp_xor_eq_4
+10 1
+01 1
+.names tmp_xor_eq_4 tmp_xnor_eq_5
+0 1
+.names ALUOp_3 CONST0 tmp_xor_eq_6
+10 1
+01 1
+.names tmp_xor_eq_6 tmp_xnor_eq_7
+0 1
+.names ALUOp_4 CONST1 tmp_xor_eq_8
+10 1
+01 1
+.names tmp_xor_eq_8 tmp_xnor_eq_9
+0 1
+.names ALUOp_5 CONST1 tmp_xor_eq_10
+10 1
+01 1
+.names tmp_xor_eq_10 tmp_xnor_eq_11
+0 1
+.names ALUOp_6 CONST0 tmp_xor_eq_12
+10 1
+01 1
+.names tmp_xor_eq_12 tmp_xnor_eq_13
+0 1
+.names tmp_xnor_eq_1 tmp_xnor_eq_3 tmp_and_red_14
 11 1
-
-.names count_0 CONST0 tmp_and_2
+.names tmp_and_red_14 tmp_xnor_eq_5 tmp_and_red_15
 11 1
-
-.names CONST1 CONST0 tmp_and_3
+.names tmp_and_red_15 tmp_xnor_eq_7 tmp_and_red_16
 11 1
-
-.names tmp_and_1 tmp_and_2 tmp_or_4
+.names tmp_and_red_16 tmp_xnor_eq_9 tmp_and_red_17
+11 1
+.names tmp_and_red_17 tmp_xnor_eq_11 tmp_and_red_18
+11 1
+.names tmp_and_red_18 tmp_xnor_eq_13 tmp_and_red_19
+11 1
+.names tmp_and_red_19 CONST1 tmp_EQ_0
+11 1
+.names ALUOp_0 CONST1 tmp_xor_eq_20
+10 1
+01 1
+.names tmp_xor_eq_20 tmp_xnor_eq_21
+0 1
+.names ALUOp_1 CONST1 tmp_xor_eq_22
+10 1
+01 1
+.names tmp_xor_eq_22 tmp_xnor_eq_23
+0 1
+.names ALUOp_2 CONST1 tmp_xor_eq_24
+10 1
+01 1
+.names tmp_xor_eq_24 tmp_xnor_eq_25
+0 1
+.names ALUOp_3 CONST0 tmp_xor_eq_26
+10 1
+01 1
+.names tmp_xor_eq_26 tmp_xnor_eq_27
+0 1
+.names ALUOp_4 CONST1 tmp_xor_eq_28
+10 1
+01 1
+.names tmp_xor_eq_28 tmp_xnor_eq_29
+0 1
+.names ALUOp_5 CONST0 tmp_xor_eq_30
+10 1
+01 1
+.names tmp_xor_eq_30 tmp_xnor_eq_31
+0 1
+.names ALUOp_6 CONST0 tmp_xor_eq_32
+10 1
+01 1
+.names tmp_xor_eq_32 tmp_xnor_eq_33
+0 1
+.names tmp_xnor_eq_21 tmp_xnor_eq_23 tmp_and_red_34
+11 1
+.names tmp_and_red_34 tmp_xnor_eq_25 tmp_and_red_35
+11 1
+.names tmp_and_red_35 tmp_xnor_eq_27 tmp_and_red_36
+11 1
+.names tmp_and_red_36 tmp_xnor_eq_29 tmp_and_red_37
+11 1
+.names tmp_and_red_37 tmp_xnor_eq_31 tmp_and_red_38
+11 1
+.names tmp_and_red_38 tmp_xnor_eq_33 tmp_and_red_39
+11 1
+.names tmp_and_red_39 CONST1 tmp_EQ_0
+11 1
+.names tmp_EQ_0 tmp_EQ_0 tmp_OR_0
 1- 1
 -1 1
-
-.names tmp_or_4 tmp_and_3 tmp_or_5
-1- 1
--1 1
-
-.names count_1 CONST0 tmp_xor_6
-01 1
+.names ALUOp_0 CONST1 tmp_xor_eq_40
 10 1
-
-.names tmp_xor_6 tmp_or_5 tmp_add_0_1
 01 1
+.names tmp_xor_eq_40 tmp_xnor_eq_41
+0 1
+.names ALUOp_1 CONST1 tmp_xor_eq_42
 10 1
-
-.names count_1 CONST0 tmp_and_7
-11 1
-
-.names count_1 tmp_or_5 tmp_and_8
-11 1
-
-.names CONST0 tmp_or_5 tmp_and_9
-11 1
-
-.names tmp_and_7 tmp_and_8 tmp_or_10
-1- 1
--1 1
-
-.names tmp_or_10 tmp_and_9 tmp_or_11
-1- 1
--1 1
-
-.names count_2 CONST0 tmp_xor_12
 01 1
+.names tmp_xor_eq_42 tmp_xnor_eq_43
+0 1
+.names ALUOp_2 CONST1 tmp_xor_eq_44
 10 1
-
-.names tmp_xor_12 tmp_or_11 tmp_add_0_2
 01 1
+.names tmp_xor_eq_44 tmp_xnor_eq_45
+0 1
+.names ALUOp_3 CONST0 tmp_xor_eq_46
 10 1
-
-.names count_2 CONST0 tmp_and_13
-11 1
-
-.names count_2 tmp_or_11 tmp_and_14
-11 1
-
-.names CONST0 tmp_or_11 tmp_and_15
-11 1
-
-.names tmp_and_13 tmp_and_14 tmp_or_16
-1- 1
--1 1
-
-.names tmp_or_16 tmp_and_15 tmp_or_17
-1- 1
--1 1
-
-.names count_3 CONST0 tmp_xor_18
 01 1
+.names tmp_xor_eq_46 tmp_xnor_eq_47
+0 1
+.names ALUOp_4 CONST1 tmp_xor_eq_48
 10 1
-
-.names tmp_xor_18 tmp_or_17 tmp_add_0_3
 01 1
+.names tmp_xor_eq_48 tmp_xnor_eq_49
+0 1
+.names ALUOp_5 CONST1 tmp_xor_eq_50
 10 1
-
-.names count_3 CONST0 tmp_and_19
+01 1
+.names tmp_xor_eq_50 tmp_xnor_eq_51
+0 1
+.names ALUOp_6 CONST0 tmp_xor_eq_52
+10 1
+01 1
+.names tmp_xor_eq_52 tmp_xnor_eq_53
+0 1
+.names tmp_xnor_eq_41 tmp_xnor_eq_43 tmp_and_red_54
 11 1
-
-.names count_3 tmp_or_17 tmp_and_20
+.names tmp_and_red_54 tmp_xnor_eq_45 tmp_and_red_55
 11 1
-
-.names CONST0 tmp_or_17 tmp_and_21
+.names tmp_and_red_55 tmp_xnor_eq_47 tmp_and_red_56
 11 1
-
-.names tmp_and_19 tmp_and_20 tmp_or_22
+.names tmp_and_red_56 tmp_xnor_eq_49 tmp_and_red_57
+11 1
+.names tmp_and_red_57 tmp_xnor_eq_51 tmp_and_red_58
+11 1
+.names tmp_and_red_58 tmp_xnor_eq_53 tmp_and_red_59
+11 1
+.names tmp_and_red_59 CONST1 tmp_EQ_0
+11 1
+.names ALUOp_0 CONST1 tmp_xor_eq_60
+10 1
+01 1
+.names tmp_xor_eq_60 tmp_xnor_eq_61
+0 1
+.names ALUOp_1 CONST1 tmp_xor_eq_62
+10 1
+01 1
+.names tmp_xor_eq_62 tmp_xnor_eq_63
+0 1
+.names ALUOp_2 CONST1 tmp_xor_eq_64
+10 1
+01 1
+.names tmp_xor_eq_64 tmp_xnor_eq_65
+0 1
+.names ALUOp_3 CONST0 tmp_xor_eq_66
+10 1
+01 1
+.names tmp_xor_eq_66 tmp_xnor_eq_67
+0 1
+.names ALUOp_4 CONST1 tmp_xor_eq_68
+10 1
+01 1
+.names tmp_xor_eq_68 tmp_xnor_eq_69
+0 1
+.names ALUOp_5 CONST0 tmp_xor_eq_70
+10 1
+01 1
+.names tmp_xor_eq_70 tmp_xnor_eq_71
+0 1
+.names ALUOp_6 CONST0 tmp_xor_eq_72
+10 1
+01 1
+.names tmp_xor_eq_72 tmp_xnor_eq_73
+0 1
+.names tmp_xnor_eq_61 tmp_xnor_eq_63 tmp_and_red_74
+11 1
+.names tmp_and_red_74 tmp_xnor_eq_65 tmp_and_red_75
+11 1
+.names tmp_and_red_75 tmp_xnor_eq_67 tmp_and_red_76
+11 1
+.names tmp_and_red_76 tmp_xnor_eq_69 tmp_and_red_77
+11 1
+.names tmp_and_red_77 tmp_xnor_eq_71 tmp_and_red_78
+11 1
+.names tmp_and_red_78 tmp_xnor_eq_73 tmp_and_red_79
+11 1
+.names tmp_and_red_79 CONST1 tmp_EQ_0
+11 1
+.names tmp_EQ_0 CONST0 ALU_operation_0 mux_ALU_operation_0_0
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 ALU_operation_1 mux_ALU_operation_0_1
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 ALU_operation_2 mux_ALU_operation_0_2
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 ALU_operation_3 mux_ALU_operation_0_3
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 ALU_operation_4 mux_ALU_operation_0_4
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 mux_ALU_operation_0_0 mux_ALU_operation_0_0
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 mux_ALU_operation_0_1 mux_ALU_operation_0_1
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 mux_ALU_operation_0_2 mux_ALU_operation_0_2
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST1 mux_ALU_operation_0_3 mux_ALU_operation_0_3
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 mux_ALU_operation_0_4 mux_ALU_operation_0_4
+11- 1
+0-1 1
+.names ALUOp_0 CONST1 tmp_xor_eq_80
+10 1
+01 1
+.names tmp_xor_eq_80 tmp_xnor_eq_81
+0 1
+.names ALUOp_1 CONST1 tmp_xor_eq_82
+10 1
+01 1
+.names tmp_xor_eq_82 tmp_xnor_eq_83
+0 1
+.names ALUOp_2 CONST0 tmp_xor_eq_84
+10 1
+01 1
+.names tmp_xor_eq_84 tmp_xnor_eq_85
+0 1
+.names ALUOp_3 CONST0 tmp_xor_eq_86
+10 1
+01 1
+.names tmp_xor_eq_86 tmp_xnor_eq_87
+0 1
+.names ALUOp_4 CONST1 tmp_xor_eq_88
+10 1
+01 1
+.names tmp_xor_eq_88 tmp_xnor_eq_89
+0 1
+.names ALUOp_5 CONST1 tmp_xor_eq_90
+10 1
+01 1
+.names tmp_xor_eq_90 tmp_xnor_eq_91
+0 1
+.names ALUOp_6 CONST0 tmp_xor_eq_92
+10 1
+01 1
+.names tmp_xor_eq_92 tmp_xnor_eq_93
+0 1
+.names tmp_xnor_eq_81 tmp_xnor_eq_83 tmp_and_red_94
+11 1
+.names tmp_and_red_94 tmp_xnor_eq_85 tmp_and_red_95
+11 1
+.names tmp_and_red_95 tmp_xnor_eq_87 tmp_and_red_96
+11 1
+.names tmp_and_red_96 tmp_xnor_eq_89 tmp_and_red_97
+11 1
+.names tmp_and_red_97 tmp_xnor_eq_91 tmp_and_red_98
+11 1
+.names tmp_and_red_98 tmp_xnor_eq_93 tmp_and_red_99
+11 1
+.names tmp_and_red_99 CONST1 tmp_EQ_0
+11 1
+.names funct3_0 CONST0 tmp_xor_eq_100
+10 1
+01 1
+.names tmp_xor_eq_100 tmp_xnor_eq_101
+0 1
+.names funct3_1 CONST0 tmp_xor_eq_102
+10 1
+01 1
+.names tmp_xor_eq_102 tmp_xnor_eq_103
+0 1
+.names funct3_2 CONST0 tmp_xor_eq_104
+10 1
+01 1
+.names tmp_xor_eq_104 tmp_xnor_eq_105
+0 1
+.names tmp_xnor_eq_101 tmp_xnor_eq_103 tmp_and_red_106
+11 1
+.names tmp_and_red_106 tmp_xnor_eq_105 tmp_and_red_107
+11 1
+.names tmp_and_red_107 CONST1 tmp_EQ_0
+11 1
+.names funct7_0 CONST0 tmp_xor_eq_108
+10 1
+01 1
+.names tmp_xor_eq_108 tmp_xnor_eq_109
+0 1
+.names funct7_1 CONST0 tmp_xor_eq_110
+10 1
+01 1
+.names tmp_xor_eq_110 tmp_xnor_eq_111
+0 1
+.names funct7_2 CONST0 tmp_xor_eq_112
+10 1
+01 1
+.names tmp_xor_eq_112 tmp_xnor_eq_113
+0 1
+.names funct7_3 CONST0 tmp_xor_eq_114
+10 1
+01 1
+.names tmp_xor_eq_114 tmp_xnor_eq_115
+0 1
+.names funct7_4 CONST0 tmp_xor_eq_116
+10 1
+01 1
+.names tmp_xor_eq_116 tmp_xnor_eq_117
+0 1
+.names funct7_5 CONST0 tmp_xor_eq_118
+10 1
+01 1
+.names tmp_xor_eq_118 tmp_xnor_eq_119
+0 1
+.names funct7_6 CONST0 tmp_xor_eq_120
+10 1
+01 1
+.names tmp_xor_eq_120 tmp_xnor_eq_121
+0 1
+.names tmp_xnor_eq_109 tmp_xnor_eq_111 tmp_and_red_122
+11 1
+.names tmp_and_red_122 tmp_xnor_eq_113 tmp_and_red_123
+11 1
+.names tmp_and_red_123 tmp_xnor_eq_115 tmp_and_red_124
+11 1
+.names tmp_and_red_124 tmp_xnor_eq_117 tmp_and_red_125
+11 1
+.names tmp_and_red_125 tmp_xnor_eq_119 tmp_and_red_126
+11 1
+.names tmp_and_red_126 tmp_xnor_eq_121 tmp_and_red_127
+11 1
+.names tmp_and_red_127 CONST1 tmp_EQ_0
+11 1
+.names tmp_EQ_0 tmp_EQ_0 tmp_AND_0
+11 1
+.names funct3_0 CONST0 tmp_xor_eq_128
+10 1
+01 1
+.names tmp_xor_eq_128 tmp_xnor_eq_129
+0 1
+.names funct3_1 CONST0 tmp_xor_eq_130
+10 1
+01 1
+.names tmp_xor_eq_130 tmp_xnor_eq_131
+0 1
+.names funct3_2 CONST0 tmp_xor_eq_132
+10 1
+01 1
+.names tmp_xor_eq_132 tmp_xnor_eq_133
+0 1
+.names tmp_xnor_eq_129 tmp_xnor_eq_131 tmp_and_red_134
+11 1
+.names tmp_and_red_134 tmp_xnor_eq_133 tmp_and_red_135
+11 1
+.names tmp_and_red_135 CONST1 tmp_EQ_0
+11 1
+.names funct7_0 CONST0 tmp_xor_eq_136
+10 1
+01 1
+.names tmp_xor_eq_136 tmp_xnor_eq_137
+0 1
+.names funct7_1 CONST0 tmp_xor_eq_138
+10 1
+01 1
+.names tmp_xor_eq_138 tmp_xnor_eq_139
+0 1
+.names funct7_2 CONST0 tmp_xor_eq_140
+10 1
+01 1
+.names tmp_xor_eq_140 tmp_xnor_eq_141
+0 1
+.names funct7_3 CONST0 tmp_xor_eq_142
+10 1
+01 1
+.names tmp_xor_eq_142 tmp_xnor_eq_143
+0 1
+.names funct7_4 CONST0 tmp_xor_eq_144
+10 1
+01 1
+.names tmp_xor_eq_144 tmp_xnor_eq_145
+0 1
+.names funct7_5 CONST1 tmp_xor_eq_146
+10 1
+01 1
+.names tmp_xor_eq_146 tmp_xnor_eq_147
+0 1
+.names funct7_6 CONST0 tmp_xor_eq_148
+10 1
+01 1
+.names tmp_xor_eq_148 tmp_xnor_eq_149
+0 1
+.names tmp_xnor_eq_137 tmp_xnor_eq_139 tmp_and_red_150
+11 1
+.names tmp_and_red_150 tmp_xnor_eq_141 tmp_and_red_151
+11 1
+.names tmp_and_red_151 tmp_xnor_eq_143 tmp_and_red_152
+11 1
+.names tmp_and_red_152 tmp_xnor_eq_145 tmp_and_red_153
+11 1
+.names tmp_and_red_153 tmp_xnor_eq_147 tmp_and_red_154
+11 1
+.names tmp_and_red_154 tmp_xnor_eq_149 tmp_and_red_155
+11 1
+.names tmp_and_red_155 CONST1 tmp_EQ_0
+11 1
+.names tmp_EQ_0 tmp_EQ_0 tmp_AND_0
+11 1
+.names funct3_0 CONST1 tmp_xor_eq_156
+10 1
+01 1
+.names tmp_xor_eq_156 tmp_xnor_eq_157
+0 1
+.names funct3_1 CONST0 tmp_xor_eq_158
+10 1
+01 1
+.names tmp_xor_eq_158 tmp_xnor_eq_159
+0 1
+.names funct3_2 CONST0 tmp_xor_eq_160
+10 1
+01 1
+.names tmp_xor_eq_160 tmp_xnor_eq_161
+0 1
+.names tmp_xnor_eq_157 tmp_xnor_eq_159 tmp_and_red_162
+11 1
+.names tmp_and_red_162 tmp_xnor_eq_161 tmp_and_red_163
+11 1
+.names tmp_and_red_163 CONST1 tmp_EQ_0
+11 1
+.names funct3_0 CONST0 tmp_xor_eq_164
+10 1
+01 1
+.names tmp_xor_eq_164 tmp_xnor_eq_165
+0 1
+.names funct3_1 CONST1 tmp_xor_eq_166
+10 1
+01 1
+.names tmp_xor_eq_166 tmp_xnor_eq_167
+0 1
+.names funct3_2 CONST0 tmp_xor_eq_168
+10 1
+01 1
+.names tmp_xor_eq_168 tmp_xnor_eq_169
+0 1
+.names tmp_xnor_eq_165 tmp_xnor_eq_167 tmp_and_red_170
+11 1
+.names tmp_and_red_170 tmp_xnor_eq_169 tmp_and_red_171
+11 1
+.names tmp_and_red_171 CONST1 tmp_EQ_0
+11 1
+.names funct3_0 CONST1 tmp_xor_eq_172
+10 1
+01 1
+.names tmp_xor_eq_172 tmp_xnor_eq_173
+0 1
+.names funct3_1 CONST1 tmp_xor_eq_174
+10 1
+01 1
+.names tmp_xor_eq_174 tmp_xnor_eq_175
+0 1
+.names funct3_2 CONST0 tmp_xor_eq_176
+10 1
+01 1
+.names tmp_xor_eq_176 tmp_xnor_eq_177
+0 1
+.names tmp_xnor_eq_173 tmp_xnor_eq_175 tmp_and_red_178
+11 1
+.names tmp_and_red_178 tmp_xnor_eq_177 tmp_and_red_179
+11 1
+.names tmp_and_red_179 CONST1 tmp_EQ_0
+11 1
+.names funct3_0 CONST0 tmp_xor_eq_180
+10 1
+01 1
+.names tmp_xor_eq_180 tmp_xnor_eq_181
+0 1
+.names funct3_1 CONST0 tmp_xor_eq_182
+10 1
+01 1
+.names tmp_xor_eq_182 tmp_xnor_eq_183
+0 1
+.names funct3_2 CONST1 tmp_xor_eq_184
+10 1
+01 1
+.names tmp_xor_eq_184 tmp_xnor_eq_185
+0 1
+.names tmp_xnor_eq_181 tmp_xnor_eq_183 tmp_and_red_186
+11 1
+.names tmp_and_red_186 tmp_xnor_eq_185 tmp_and_red_187
+11 1
+.names tmp_and_red_187 CONST1 tmp_EQ_0
+11 1
+.names funct3_0 CONST1 tmp_xor_eq_188
+10 1
+01 1
+.names tmp_xor_eq_188 tmp_xnor_eq_189
+0 1
+.names funct3_1 CONST0 tmp_xor_eq_190
+10 1
+01 1
+.names tmp_xor_eq_190 tmp_xnor_eq_191
+0 1
+.names funct3_2 CONST1 tmp_xor_eq_192
+10 1
+01 1
+.names tmp_xor_eq_192 tmp_xnor_eq_193
+0 1
+.names tmp_xnor_eq_189 tmp_xnor_eq_191 tmp_and_red_194
+11 1
+.names tmp_and_red_194 tmp_xnor_eq_193 tmp_and_red_195
+11 1
+.names tmp_and_red_195 CONST1 tmp_EQ_0
+11 1
+.names funct7_0 CONST0 tmp_xor_eq_196
+10 1
+01 1
+.names tmp_xor_eq_196 tmp_xnor_eq_197
+0 1
+.names funct7_1 CONST0 tmp_xor_eq_198
+10 1
+01 1
+.names tmp_xor_eq_198 tmp_xnor_eq_199
+0 1
+.names funct7_2 CONST0 tmp_xor_eq_200
+10 1
+01 1
+.names tmp_xor_eq_200 tmp_xnor_eq_201
+0 1
+.names funct7_3 CONST0 tmp_xor_eq_202
+10 1
+01 1
+.names tmp_xor_eq_202 tmp_xnor_eq_203
+0 1
+.names funct7_4 CONST0 tmp_xor_eq_204
+10 1
+01 1
+.names tmp_xor_eq_204 tmp_xnor_eq_205
+0 1
+.names funct7_5 CONST0 tmp_xor_eq_206
+10 1
+01 1
+.names tmp_xor_eq_206 tmp_xnor_eq_207
+0 1
+.names funct7_6 CONST0 tmp_xor_eq_208
+10 1
+01 1
+.names tmp_xor_eq_208 tmp_xnor_eq_209
+0 1
+.names tmp_xnor_eq_197 tmp_xnor_eq_199 tmp_and_red_210
+11 1
+.names tmp_and_red_210 tmp_xnor_eq_201 tmp_and_red_211
+11 1
+.names tmp_and_red_211 tmp_xnor_eq_203 tmp_and_red_212
+11 1
+.names tmp_and_red_212 tmp_xnor_eq_205 tmp_and_red_213
+11 1
+.names tmp_and_red_213 tmp_xnor_eq_207 tmp_and_red_214
+11 1
+.names tmp_and_red_214 tmp_xnor_eq_209 tmp_and_red_215
+11 1
+.names tmp_and_red_215 CONST1 tmp_EQ_0
+11 1
+.names tmp_EQ_0 tmp_EQ_0 tmp_AND_0
+11 1
+.names funct3_0 CONST1 tmp_xor_eq_216
+10 1
+01 1
+.names tmp_xor_eq_216 tmp_xnor_eq_217
+0 1
+.names funct3_1 CONST0 tmp_xor_eq_218
+10 1
+01 1
+.names tmp_xor_eq_218 tmp_xnor_eq_219
+0 1
+.names funct3_2 CONST1 tmp_xor_eq_220
+10 1
+01 1
+.names tmp_xor_eq_220 tmp_xnor_eq_221
+0 1
+.names tmp_xnor_eq_217 tmp_xnor_eq_219 tmp_and_red_222
+11 1
+.names tmp_and_red_222 tmp_xnor_eq_221 tmp_and_red_223
+11 1
+.names tmp_and_red_223 CONST1 tmp_EQ_0
+11 1
+.names funct7_0 CONST0 tmp_xor_eq_224
+10 1
+01 1
+.names tmp_xor_eq_224 tmp_xnor_eq_225
+0 1
+.names funct7_1 CONST0 tmp_xor_eq_226
+10 1
+01 1
+.names tmp_xor_eq_226 tmp_xnor_eq_227
+0 1
+.names funct7_2 CONST0 tmp_xor_eq_228
+10 1
+01 1
+.names tmp_xor_eq_228 tmp_xnor_eq_229
+0 1
+.names funct7_3 CONST0 tmp_xor_eq_230
+10 1
+01 1
+.names tmp_xor_eq_230 tmp_xnor_eq_231
+0 1
+.names funct7_4 CONST0 tmp_xor_eq_232
+10 1
+01 1
+.names tmp_xor_eq_232 tmp_xnor_eq_233
+0 1
+.names funct7_5 CONST1 tmp_xor_eq_234
+10 1
+01 1
+.names tmp_xor_eq_234 tmp_xnor_eq_235
+0 1
+.names funct7_6 CONST0 tmp_xor_eq_236
+10 1
+01 1
+.names tmp_xor_eq_236 tmp_xnor_eq_237
+0 1
+.names tmp_xnor_eq_225 tmp_xnor_eq_227 tmp_and_red_238
+11 1
+.names tmp_and_red_238 tmp_xnor_eq_229 tmp_and_red_239
+11 1
+.names tmp_and_red_239 tmp_xnor_eq_231 tmp_and_red_240
+11 1
+.names tmp_and_red_240 tmp_xnor_eq_233 tmp_and_red_241
+11 1
+.names tmp_and_red_241 tmp_xnor_eq_235 tmp_and_red_242
+11 1
+.names tmp_and_red_242 tmp_xnor_eq_237 tmp_and_red_243
+11 1
+.names tmp_and_red_243 CONST1 tmp_EQ_0
+11 1
+.names tmp_EQ_0 tmp_EQ_0 tmp_AND_0
+11 1
+.names funct3_0 CONST0 tmp_xor_eq_244
+10 1
+01 1
+.names tmp_xor_eq_244 tmp_xnor_eq_245
+0 1
+.names funct3_1 CONST1 tmp_xor_eq_246
+10 1
+01 1
+.names tmp_xor_eq_246 tmp_xnor_eq_247
+0 1
+.names funct3_2 CONST1 tmp_xor_eq_248
+10 1
+01 1
+.names tmp_xor_eq_248 tmp_xnor_eq_249
+0 1
+.names tmp_xnor_eq_245 tmp_xnor_eq_247 tmp_and_red_250
+11 1
+.names tmp_and_red_250 tmp_xnor_eq_249 tmp_and_red_251
+11 1
+.names tmp_and_red_251 CONST1 tmp_EQ_0
+11 1
+.names funct3_0 CONST1 tmp_xor_eq_252
+10 1
+01 1
+.names tmp_xor_eq_252 tmp_xnor_eq_253
+0 1
+.names funct3_1 CONST1 tmp_xor_eq_254
+10 1
+01 1
+.names tmp_xor_eq_254 tmp_xnor_eq_255
+0 1
+.names funct3_2 CONST1 tmp_xor_eq_256
+10 1
+01 1
+.names tmp_xor_eq_256 tmp_xnor_eq_257
+0 1
+.names tmp_xnor_eq_253 tmp_xnor_eq_255 tmp_and_red_258
+11 1
+.names tmp_and_red_258 tmp_xnor_eq_257 tmp_and_red_259
+11 1
+.names tmp_and_red_259 CONST1 tmp_EQ_0
+11 1
+.names tmp_EQ_0 CONST0 ALU_operation_0 mux_ALU_operation_0_0
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST1 ALU_operation_1 mux_ALU_operation_0_1
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 ALU_operation_2 mux_ALU_operation_0_2
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 ALU_operation_3 mux_ALU_operation_0_3
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 ALU_operation_4 mux_ALU_operation_0_4
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST1 mux_ALU_operation_0_0 mux_ALU_operation_0_0
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST1 mux_ALU_operation_0_1 mux_ALU_operation_0_1
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 mux_ALU_operation_0_2 mux_ALU_operation_0_2
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 mux_ALU_operation_0_3 mux_ALU_operation_0_3
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 mux_ALU_operation_0_4 mux_ALU_operation_0_4
+11- 1
+0-1 1
+.names tmp_AND_0 CONST1 mux_ALU_operation_0_0 mux_ALU_operation_0_0
+11- 1
+0-1 1
+.names tmp_AND_0 CONST1 mux_ALU_operation_0_1 mux_ALU_operation_0_1
+11- 1
+0-1 1
+.names tmp_AND_0 CONST0 mux_ALU_operation_0_2 mux_ALU_operation_0_2
+11- 1
+0-1 1
+.names tmp_AND_0 CONST1 mux_ALU_operation_0_3 mux_ALU_operation_0_3
+11- 1
+0-1 1
+.names tmp_AND_0 CONST0 mux_ALU_operation_0_4 mux_ALU_operation_0_4
+11- 1
+0-1 1
+.names tmp_AND_0 CONST0 mux_ALU_operation_0_0 mux_ALU_operation_0_0
+11- 1
+0-1 1
+.names tmp_AND_0 CONST1 mux_ALU_operation_0_1 mux_ALU_operation_0_1
+11- 1
+0-1 1
+.names tmp_AND_0 CONST0 mux_ALU_operation_0_2 mux_ALU_operation_0_2
+11- 1
+0-1 1
+.names tmp_AND_0 CONST1 mux_ALU_operation_0_3 mux_ALU_operation_0_3
+11- 1
+0-1 1
+.names tmp_AND_0 CONST0 mux_ALU_operation_0_4 mux_ALU_operation_0_4
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 mux_ALU_operation_0_0 mux_ALU_operation_0_0
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST1 mux_ALU_operation_0_1 mux_ALU_operation_0_1
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST1 mux_ALU_operation_0_2 mux_ALU_operation_0_2
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 mux_ALU_operation_0_3 mux_ALU_operation_0_3
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 mux_ALU_operation_0_4 mux_ALU_operation_0_4
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST1 mux_ALU_operation_0_0 mux_ALU_operation_0_0
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST1 mux_ALU_operation_0_1 mux_ALU_operation_0_1
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST1 mux_ALU_operation_0_2 mux_ALU_operation_0_2
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 mux_ALU_operation_0_3 mux_ALU_operation_0_3
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST1 mux_ALU_operation_0_4 mux_ALU_operation_0_4
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 mux_ALU_operation_0_0 mux_ALU_operation_0_0
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST1 mux_ALU_operation_0_1 mux_ALU_operation_0_1
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST1 mux_ALU_operation_0_2 mux_ALU_operation_0_2
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 mux_ALU_operation_0_3 mux_ALU_operation_0_3
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST1 mux_ALU_operation_0_4 mux_ALU_operation_0_4
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST1 mux_ALU_operation_0_0 mux_ALU_operation_0_0
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 mux_ALU_operation_0_1 mux_ALU_operation_0_1
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST1 mux_ALU_operation_0_2 mux_ALU_operation_0_2
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST1 mux_ALU_operation_0_3 mux_ALU_operation_0_3
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 mux_ALU_operation_0_4 mux_ALU_operation_0_4
+11- 1
+0-1 1
+.names tmp_AND_0 CONST1 mux_ALU_operation_0_0 mux_ALU_operation_0_0
+11- 1
+0-1 1
+.names tmp_AND_0 CONST0 mux_ALU_operation_0_1 mux_ALU_operation_0_1
+11- 1
+0-1 1
+.names tmp_AND_0 CONST0 mux_ALU_operation_0_2 mux_ALU_operation_0_2
+11- 1
+0-1 1
+.names tmp_AND_0 CONST0 mux_ALU_operation_0_3 mux_ALU_operation_0_3
+11- 1
+0-1 1
+.names tmp_AND_0 CONST0 mux_ALU_operation_0_4 mux_ALU_operation_0_4
+11- 1
+0-1 1
+.names tmp_AND_0 CONST0 mux_ALU_operation_0_0 mux_ALU_operation_0_0
+11- 1
+0-1 1
+.names tmp_AND_0 CONST0 mux_ALU_operation_0_1 mux_ALU_operation_0_1
+11- 1
+0-1 1
+.names tmp_AND_0 CONST0 mux_ALU_operation_0_2 mux_ALU_operation_0_2
+11- 1
+0-1 1
+.names tmp_AND_0 CONST0 mux_ALU_operation_0_3 mux_ALU_operation_0_3
+11- 1
+0-1 1
+.names tmp_AND_0 CONST0 mux_ALU_operation_0_4 mux_ALU_operation_0_4
+11- 1
+0-1 1
+.names ALUOp_0 CONST1 tmp_xor_eq_260
+10 1
+01 1
+.names tmp_xor_eq_260 tmp_xnor_eq_261
+0 1
+.names ALUOp_1 CONST1 tmp_xor_eq_262
+10 1
+01 1
+.names tmp_xor_eq_262 tmp_xnor_eq_263
+0 1
+.names ALUOp_2 CONST0 tmp_xor_eq_264
+10 1
+01 1
+.names tmp_xor_eq_264 tmp_xnor_eq_265
+0 1
+.names ALUOp_3 CONST0 tmp_xor_eq_266
+10 1
+01 1
+.names tmp_xor_eq_266 tmp_xnor_eq_267
+0 1
+.names ALUOp_4 CONST1 tmp_xor_eq_268
+10 1
+01 1
+.names tmp_xor_eq_268 tmp_xnor_eq_269
+0 1
+.names ALUOp_5 CONST0 tmp_xor_eq_270
+10 1
+01 1
+.names tmp_xor_eq_270 tmp_xnor_eq_271
+0 1
+.names ALUOp_6 CONST0 tmp_xor_eq_272
+10 1
+01 1
+.names tmp_xor_eq_272 tmp_xnor_eq_273
+0 1
+.names tmp_xnor_eq_261 tmp_xnor_eq_263 tmp_and_red_274
+11 1
+.names tmp_and_red_274 tmp_xnor_eq_265 tmp_and_red_275
+11 1
+.names tmp_and_red_275 tmp_xnor_eq_267 tmp_and_red_276
+11 1
+.names tmp_and_red_276 tmp_xnor_eq_269 tmp_and_red_277
+11 1
+.names tmp_and_red_277 tmp_xnor_eq_271 tmp_and_red_278
+11 1
+.names tmp_and_red_278 tmp_xnor_eq_273 tmp_and_red_279
+11 1
+.names tmp_and_red_279 CONST1 tmp_EQ_0
+11 1
+.names funct3_0 CONST0 tmp_xor_eq_280
+10 1
+01 1
+.names tmp_xor_eq_280 tmp_xnor_eq_281
+0 1
+.names funct3_1 CONST0 tmp_xor_eq_282
+10 1
+01 1
+.names tmp_xor_eq_282 tmp_xnor_eq_283
+0 1
+.names funct3_2 CONST0 tmp_xor_eq_284
+10 1
+01 1
+.names tmp_xor_eq_284 tmp_xnor_eq_285
+0 1
+.names tmp_xnor_eq_281 tmp_xnor_eq_283 tmp_and_red_286
+11 1
+.names tmp_and_red_286 tmp_xnor_eq_285 tmp_and_red_287
+11 1
+.names tmp_and_red_287 CONST1 tmp_EQ_0
+11 1
+.names funct3_0 CONST0 tmp_xor_eq_288
+10 1
+01 1
+.names tmp_xor_eq_288 tmp_xnor_eq_289
+0 1
+.names funct3_1 CONST1 tmp_xor_eq_290
+10 1
+01 1
+.names tmp_xor_eq_290 tmp_xnor_eq_291
+0 1
+.names funct3_2 CONST0 tmp_xor_eq_292
+10 1
+01 1
+.names tmp_xor_eq_292 tmp_xnor_eq_293
+0 1
+.names tmp_xnor_eq_289 tmp_xnor_eq_291 tmp_and_red_294
+11 1
+.names tmp_and_red_294 tmp_xnor_eq_293 tmp_and_red_295
+11 1
+.names tmp_and_red_295 CONST1 tmp_EQ_0
+11 1
+.names funct3_0 CONST1 tmp_xor_eq_296
+10 1
+01 1
+.names tmp_xor_eq_296 tmp_xnor_eq_297
+0 1
+.names funct3_1 CONST1 tmp_xor_eq_298
+10 1
+01 1
+.names tmp_xor_eq_298 tmp_xnor_eq_299
+0 1
+.names funct3_2 CONST0 tmp_xor_eq_300
+10 1
+01 1
+.names tmp_xor_eq_300 tmp_xnor_eq_301
+0 1
+.names tmp_xnor_eq_297 tmp_xnor_eq_299 tmp_and_red_302
+11 1
+.names tmp_and_red_302 tmp_xnor_eq_301 tmp_and_red_303
+11 1
+.names tmp_and_red_303 CONST1 tmp_EQ_0
+11 1
+.names funct3_0 CONST0 tmp_xor_eq_304
+10 1
+01 1
+.names tmp_xor_eq_304 tmp_xnor_eq_305
+0 1
+.names funct3_1 CONST0 tmp_xor_eq_306
+10 1
+01 1
+.names tmp_xor_eq_306 tmp_xnor_eq_307
+0 1
+.names funct3_2 CONST1 tmp_xor_eq_308
+10 1
+01 1
+.names tmp_xor_eq_308 tmp_xnor_eq_309
+0 1
+.names tmp_xnor_eq_305 tmp_xnor_eq_307 tmp_and_red_310
+11 1
+.names tmp_and_red_310 tmp_xnor_eq_309 tmp_and_red_311
+11 1
+.names tmp_and_red_311 CONST1 tmp_EQ_0
+11 1
+.names funct3_0 CONST0 tmp_xor_eq_312
+10 1
+01 1
+.names tmp_xor_eq_312 tmp_xnor_eq_313
+0 1
+.names funct3_1 CONST1 tmp_xor_eq_314
+10 1
+01 1
+.names tmp_xor_eq_314 tmp_xnor_eq_315
+0 1
+.names funct3_2 CONST1 tmp_xor_eq_316
+10 1
+01 1
+.names tmp_xor_eq_316 tmp_xnor_eq_317
+0 1
+.names tmp_xnor_eq_313 tmp_xnor_eq_315 tmp_and_red_318
+11 1
+.names tmp_and_red_318 tmp_xnor_eq_317 tmp_and_red_319
+11 1
+.names tmp_and_red_319 CONST1 tmp_EQ_0
+11 1
+.names funct3_0 CONST1 tmp_xor_eq_320
+10 1
+01 1
+.names tmp_xor_eq_320 tmp_xnor_eq_321
+0 1
+.names funct3_1 CONST1 tmp_xor_eq_322
+10 1
+01 1
+.names tmp_xor_eq_322 tmp_xnor_eq_323
+0 1
+.names funct3_2 CONST1 tmp_xor_eq_324
+10 1
+01 1
+.names tmp_xor_eq_324 tmp_xnor_eq_325
+0 1
+.names tmp_xnor_eq_321 tmp_xnor_eq_323 tmp_and_red_326
+11 1
+.names tmp_and_red_326 tmp_xnor_eq_325 tmp_and_red_327
+11 1
+.names tmp_and_red_327 CONST1 tmp_EQ_0
+11 1
+.names funct3_0 CONST1 tmp_xor_eq_328
+10 1
+01 1
+.names tmp_xor_eq_328 tmp_xnor_eq_329
+0 1
+.names funct3_1 CONST0 tmp_xor_eq_330
+10 1
+01 1
+.names tmp_xor_eq_330 tmp_xnor_eq_331
+0 1
+.names funct3_2 CONST0 tmp_xor_eq_332
+10 1
+01 1
+.names tmp_xor_eq_332 tmp_xnor_eq_333
+0 1
+.names tmp_xnor_eq_329 tmp_xnor_eq_331 tmp_and_red_334
+11 1
+.names tmp_and_red_334 tmp_xnor_eq_333 tmp_and_red_335
+11 1
+.names tmp_and_red_335 CONST1 tmp_EQ_0
+11 1
+.names funct3_0 CONST1 tmp_xor_eq_336
+10 1
+01 1
+.names tmp_xor_eq_336 tmp_xnor_eq_337
+0 1
+.names funct3_1 CONST0 tmp_xor_eq_338
+10 1
+01 1
+.names tmp_xor_eq_338 tmp_xnor_eq_339
+0 1
+.names funct3_2 CONST1 tmp_xor_eq_340
+10 1
+01 1
+.names tmp_xor_eq_340 tmp_xnor_eq_341
+0 1
+.names tmp_xnor_eq_337 tmp_xnor_eq_339 tmp_and_red_342
+11 1
+.names tmp_and_red_342 tmp_xnor_eq_341 tmp_and_red_343
+11 1
+.names tmp_and_red_343 CONST1 tmp_EQ_0
+11 1
+.names funct7_0 CONST0 tmp_xor_eq_344
+10 1
+01 1
+.names tmp_xor_eq_344 tmp_xnor_eq_345
+0 1
+.names funct7_1 CONST0 tmp_xor_eq_346
+10 1
+01 1
+.names tmp_xor_eq_346 tmp_xnor_eq_347
+0 1
+.names funct7_2 CONST0 tmp_xor_eq_348
+10 1
+01 1
+.names tmp_xor_eq_348 tmp_xnor_eq_349
+0 1
+.names funct7_3 CONST0 tmp_xor_eq_350
+10 1
+01 1
+.names tmp_xor_eq_350 tmp_xnor_eq_351
+0 1
+.names funct7_4 CONST0 tmp_xor_eq_352
+10 1
+01 1
+.names tmp_xor_eq_352 tmp_xnor_eq_353
+0 1
+.names funct7_5 CONST0 tmp_xor_eq_354
+10 1
+01 1
+.names tmp_xor_eq_354 tmp_xnor_eq_355
+0 1
+.names funct7_6 CONST0 tmp_xor_eq_356
+10 1
+01 1
+.names tmp_xor_eq_356 tmp_xnor_eq_357
+0 1
+.names tmp_xnor_eq_345 tmp_xnor_eq_347 tmp_and_red_358
+11 1
+.names tmp_and_red_358 tmp_xnor_eq_349 tmp_and_red_359
+11 1
+.names tmp_and_red_359 tmp_xnor_eq_351 tmp_and_red_360
+11 1
+.names tmp_and_red_360 tmp_xnor_eq_353 tmp_and_red_361
+11 1
+.names tmp_and_red_361 tmp_xnor_eq_355 tmp_and_red_362
+11 1
+.names tmp_and_red_362 tmp_xnor_eq_357 tmp_and_red_363
+11 1
+.names tmp_and_red_363 CONST1 tmp_EQ_0
+11 1
+.names tmp_EQ_0 tmp_EQ_0 tmp_AND_0
+11 1
+.names funct3_0 CONST1 tmp_xor_eq_364
+10 1
+01 1
+.names tmp_xor_eq_364 tmp_xnor_eq_365
+0 1
+.names funct3_1 CONST0 tmp_xor_eq_366
+10 1
+01 1
+.names tmp_xor_eq_366 tmp_xnor_eq_367
+0 1
+.names funct3_2 CONST1 tmp_xor_eq_368
+10 1
+01 1
+.names tmp_xor_eq_368 tmp_xnor_eq_369
+0 1
+.names tmp_xnor_eq_365 tmp_xnor_eq_367 tmp_and_red_370
+11 1
+.names tmp_and_red_370 tmp_xnor_eq_369 tmp_and_red_371
+11 1
+.names tmp_and_red_371 CONST1 tmp_EQ_0
+11 1
+.names funct7_0 CONST0 tmp_xor_eq_372
+10 1
+01 1
+.names tmp_xor_eq_372 tmp_xnor_eq_373
+0 1
+.names funct7_1 CONST0 tmp_xor_eq_374
+10 1
+01 1
+.names tmp_xor_eq_374 tmp_xnor_eq_375
+0 1
+.names funct7_2 CONST0 tmp_xor_eq_376
+10 1
+01 1
+.names tmp_xor_eq_376 tmp_xnor_eq_377
+0 1
+.names funct7_3 CONST0 tmp_xor_eq_378
+10 1
+01 1
+.names tmp_xor_eq_378 tmp_xnor_eq_379
+0 1
+.names funct7_4 CONST0 tmp_xor_eq_380
+10 1
+01 1
+.names tmp_xor_eq_380 tmp_xnor_eq_381
+0 1
+.names funct7_5 CONST1 tmp_xor_eq_382
+10 1
+01 1
+.names tmp_xor_eq_382 tmp_xnor_eq_383
+0 1
+.names funct7_6 CONST0 tmp_xor_eq_384
+10 1
+01 1
+.names tmp_xor_eq_384 tmp_xnor_eq_385
+0 1
+.names tmp_xnor_eq_373 tmp_xnor_eq_375 tmp_and_red_386
+11 1
+.names tmp_and_red_386 tmp_xnor_eq_377 tmp_and_red_387
+11 1
+.names tmp_and_red_387 tmp_xnor_eq_379 tmp_and_red_388
+11 1
+.names tmp_and_red_388 tmp_xnor_eq_381 tmp_and_red_389
+11 1
+.names tmp_and_red_389 tmp_xnor_eq_383 tmp_and_red_390
+11 1
+.names tmp_and_red_390 tmp_xnor_eq_385 tmp_and_red_391
+11 1
+.names tmp_and_red_391 CONST1 tmp_EQ_0
+11 1
+.names tmp_EQ_0 tmp_EQ_0 tmp_AND_0
+11 1
+.names tmp_AND_0 CONST1 ALU_operation_0 mux_ALU_operation_0_0
+11- 1
+0-1 1
+.names tmp_AND_0 CONST1 ALU_operation_1 mux_ALU_operation_0_1
+11- 1
+0-1 1
+.names tmp_AND_0 CONST0 ALU_operation_2 mux_ALU_operation_0_2
+11- 1
+0-1 1
+.names tmp_AND_0 CONST1 ALU_operation_3 mux_ALU_operation_0_3
+11- 1
+0-1 1
+.names tmp_AND_0 CONST0 ALU_operation_4 mux_ALU_operation_0_4
+11- 1
+0-1 1
+.names tmp_AND_0 CONST0 mux_ALU_operation_0_0 mux_ALU_operation_0_0
+11- 1
+0-1 1
+.names tmp_AND_0 CONST1 mux_ALU_operation_0_1 mux_ALU_operation_0_1
+11- 1
+0-1 1
+.names tmp_AND_0 CONST0 mux_ALU_operation_0_2 mux_ALU_operation_0_2
+11- 1
+0-1 1
+.names tmp_AND_0 CONST1 mux_ALU_operation_0_3 mux_ALU_operation_0_3
+11- 1
+0-1 1
+.names tmp_AND_0 CONST0 mux_ALU_operation_0_4 mux_ALU_operation_0_4
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST1 mux_ALU_operation_0_0 mux_ALU_operation_0_0
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 mux_ALU_operation_0_1 mux_ALU_operation_0_1
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST1 mux_ALU_operation_0_2 mux_ALU_operation_0_2
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST1 mux_ALU_operation_0_3 mux_ALU_operation_0_3
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 mux_ALU_operation_0_4 mux_ALU_operation_0_4
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 mux_ALU_operation_0_0 mux_ALU_operation_0_0
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST1 mux_ALU_operation_0_1 mux_ALU_operation_0_1
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 mux_ALU_operation_0_2 mux_ALU_operation_0_2
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 mux_ALU_operation_0_3 mux_ALU_operation_0_3
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 mux_ALU_operation_0_4 mux_ALU_operation_0_4
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST1 mux_ALU_operation_0_0 mux_ALU_operation_0_0
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST1 mux_ALU_operation_0_1 mux_ALU_operation_0_1
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 mux_ALU_operation_0_2 mux_ALU_operation_0_2
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 mux_ALU_operation_0_3 mux_ALU_operation_0_3
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 mux_ALU_operation_0_4 mux_ALU_operation_0_4
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 mux_ALU_operation_0_0 mux_ALU_operation_0_0
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST1 mux_ALU_operation_0_1 mux_ALU_operation_0_1
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST1 mux_ALU_operation_0_2 mux_ALU_operation_0_2
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 mux_ALU_operation_0_3 mux_ALU_operation_0_3
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 mux_ALU_operation_0_4 mux_ALU_operation_0_4
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST1 mux_ALU_operation_0_0 mux_ALU_operation_0_0
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST1 mux_ALU_operation_0_1 mux_ALU_operation_0_1
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST1 mux_ALU_operation_0_2 mux_ALU_operation_0_2
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 mux_ALU_operation_0_3 mux_ALU_operation_0_3
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST1 mux_ALU_operation_0_4 mux_ALU_operation_0_4
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 mux_ALU_operation_0_0 mux_ALU_operation_0_0
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST1 mux_ALU_operation_0_1 mux_ALU_operation_0_1
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST1 mux_ALU_operation_0_2 mux_ALU_operation_0_2
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 mux_ALU_operation_0_3 mux_ALU_operation_0_3
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST1 mux_ALU_operation_0_4 mux_ALU_operation_0_4
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 mux_ALU_operation_0_0 mux_ALU_operation_0_0
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 mux_ALU_operation_0_1 mux_ALU_operation_0_1
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 mux_ALU_operation_0_2 mux_ALU_operation_0_2
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 mux_ALU_operation_0_3 mux_ALU_operation_0_3
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 mux_ALU_operation_0_4 mux_ALU_operation_0_4
+11- 1
+0-1 1
+.names ALUOp_0 CONST1 tmp_xor_eq_392
+10 1
+01 1
+.names tmp_xor_eq_392 tmp_xnor_eq_393
+0 1
+.names ALUOp_1 CONST1 tmp_xor_eq_394
+10 1
+01 1
+.names tmp_xor_eq_394 tmp_xnor_eq_395
+0 1
+.names ALUOp_2 CONST0 tmp_xor_eq_396
+10 1
+01 1
+.names tmp_xor_eq_396 tmp_xnor_eq_397
+0 1
+.names ALUOp_3 CONST0 tmp_xor_eq_398
+10 1
+01 1
+.names tmp_xor_eq_398 tmp_xnor_eq_399
+0 1
+.names ALUOp_4 CONST0 tmp_xor_eq_400
+10 1
+01 1
+.names tmp_xor_eq_400 tmp_xnor_eq_401
+0 1
+.names ALUOp_5 CONST0 tmp_xor_eq_402
+10 1
+01 1
+.names tmp_xor_eq_402 tmp_xnor_eq_403
+0 1
+.names ALUOp_6 CONST0 tmp_xor_eq_404
+10 1
+01 1
+.names tmp_xor_eq_404 tmp_xnor_eq_405
+0 1
+.names tmp_xnor_eq_393 tmp_xnor_eq_395 tmp_and_red_406
+11 1
+.names tmp_and_red_406 tmp_xnor_eq_397 tmp_and_red_407
+11 1
+.names tmp_and_red_407 tmp_xnor_eq_399 tmp_and_red_408
+11 1
+.names tmp_and_red_408 tmp_xnor_eq_401 tmp_and_red_409
+11 1
+.names tmp_and_red_409 tmp_xnor_eq_403 tmp_and_red_410
+11 1
+.names tmp_and_red_410 tmp_xnor_eq_405 tmp_and_red_411
+11 1
+.names tmp_and_red_411 CONST1 tmp_EQ_0
+11 1
+.names funct3_0 CONST0 tmp_xor_eq_412
+10 1
+01 1
+.names tmp_xor_eq_412 tmp_xnor_eq_413
+0 1
+.names funct3_1 CONST0 tmp_xor_eq_414
+10 1
+01 1
+.names tmp_xor_eq_414 tmp_xnor_eq_415
+0 1
+.names funct3_2 CONST0 tmp_xor_eq_416
+10 1
+01 1
+.names tmp_xor_eq_416 tmp_xnor_eq_417
+0 1
+.names tmp_xnor_eq_413 tmp_xnor_eq_415 tmp_and_red_418
+11 1
+.names tmp_and_red_418 tmp_xnor_eq_417 tmp_and_red_419
+11 1
+.names tmp_and_red_419 CONST1 tmp_EQ_0
+11 1
+.names funct3_0 CONST1 tmp_xor_eq_420
+10 1
+01 1
+.names tmp_xor_eq_420 tmp_xnor_eq_421
+0 1
+.names funct3_1 CONST0 tmp_xor_eq_422
+10 1
+01 1
+.names tmp_xor_eq_422 tmp_xnor_eq_423
+0 1
+.names funct3_2 CONST0 tmp_xor_eq_424
+10 1
+01 1
+.names tmp_xor_eq_424 tmp_xnor_eq_425
+0 1
+.names tmp_xnor_eq_421 tmp_xnor_eq_423 tmp_and_red_426
+11 1
+.names tmp_and_red_426 tmp_xnor_eq_425 tmp_and_red_427
+11 1
+.names tmp_and_red_427 CONST1 tmp_EQ_0
+11 1
+.names funct3_0 CONST0 tmp_xor_eq_428
+10 1
+01 1
+.names tmp_xor_eq_428 tmp_xnor_eq_429
+0 1
+.names funct3_1 CONST1 tmp_xor_eq_430
+10 1
+01 1
+.names tmp_xor_eq_430 tmp_xnor_eq_431
+0 1
+.names funct3_2 CONST0 tmp_xor_eq_432
+10 1
+01 1
+.names tmp_xor_eq_432 tmp_xnor_eq_433
+0 1
+.names tmp_xnor_eq_429 tmp_xnor_eq_431 tmp_and_red_434
+11 1
+.names tmp_and_red_434 tmp_xnor_eq_433 tmp_and_red_435
+11 1
+.names tmp_and_red_435 CONST1 tmp_EQ_0
+11 1
+.names funct3_0 CONST0 tmp_xor_eq_436
+10 1
+01 1
+.names tmp_xor_eq_436 tmp_xnor_eq_437
+0 1
+.names funct3_1 CONST0 tmp_xor_eq_438
+10 1
+01 1
+.names tmp_xor_eq_438 tmp_xnor_eq_439
+0 1
+.names funct3_2 CONST1 tmp_xor_eq_440
+10 1
+01 1
+.names tmp_xor_eq_440 tmp_xnor_eq_441
+0 1
+.names tmp_xnor_eq_437 tmp_xnor_eq_439 tmp_and_red_442
+11 1
+.names tmp_and_red_442 tmp_xnor_eq_441 tmp_and_red_443
+11 1
+.names tmp_and_red_443 CONST1 tmp_EQ_0
+11 1
+.names funct3_0 CONST1 tmp_xor_eq_444
+10 1
+01 1
+.names tmp_xor_eq_444 tmp_xnor_eq_445
+0 1
+.names funct3_1 CONST0 tmp_xor_eq_446
+10 1
+01 1
+.names tmp_xor_eq_446 tmp_xnor_eq_447
+0 1
+.names funct3_2 CONST1 tmp_xor_eq_448
+10 1
+01 1
+.names tmp_xor_eq_448 tmp_xnor_eq_449
+0 1
+.names tmp_xnor_eq_445 tmp_xnor_eq_447 tmp_and_red_450
+11 1
+.names tmp_and_red_450 tmp_xnor_eq_449 tmp_and_red_451
+11 1
+.names tmp_and_red_451 CONST1 tmp_EQ_0
+11 1
+.names tmp_EQ_0 CONST0 ALU_operation_0 mux_ALU_operation_0_0
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 ALU_operation_1 mux_ALU_operation_0_1
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 ALU_operation_2 mux_ALU_operation_0_2
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 ALU_operation_3 mux_ALU_operation_0_3
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 ALU_operation_4 mux_ALU_operation_0_4
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 mux_ALU_operation_0_0 mux_ALU_operation_0_0
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 mux_ALU_operation_0_1 mux_ALU_operation_0_1
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 mux_ALU_operation_0_2 mux_ALU_operation_0_2
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 mux_ALU_operation_0_3 mux_ALU_operation_0_3
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 mux_ALU_operation_0_4 mux_ALU_operation_0_4
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 mux_ALU_operation_0_0 mux_ALU_operation_0_0
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 mux_ALU_operation_0_1 mux_ALU_operation_0_1
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 mux_ALU_operation_0_2 mux_ALU_operation_0_2
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 mux_ALU_operation_0_3 mux_ALU_operation_0_3
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 mux_ALU_operation_0_4 mux_ALU_operation_0_4
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 mux_ALU_operation_0_0 mux_ALU_operation_0_0
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 mux_ALU_operation_0_1 mux_ALU_operation_0_1
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 mux_ALU_operation_0_2 mux_ALU_operation_0_2
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 mux_ALU_operation_0_3 mux_ALU_operation_0_3
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 mux_ALU_operation_0_4 mux_ALU_operation_0_4
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 mux_ALU_operation_0_0 mux_ALU_operation_0_0
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 mux_ALU_operation_0_1 mux_ALU_operation_0_1
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 mux_ALU_operation_0_2 mux_ALU_operation_0_2
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 mux_ALU_operation_0_3 mux_ALU_operation_0_3
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 mux_ALU_operation_0_4 mux_ALU_operation_0_4
+11- 1
+0-1 1
+.names ALUOp_0 CONST1 tmp_xor_eq_452
+10 1
+01 1
+.names tmp_xor_eq_452 tmp_xnor_eq_453
+0 1
+.names ALUOp_1 CONST1 tmp_xor_eq_454
+10 1
+01 1
+.names tmp_xor_eq_454 tmp_xnor_eq_455
+0 1
+.names ALUOp_2 CONST0 tmp_xor_eq_456
+10 1
+01 1
+.names tmp_xor_eq_456 tmp_xnor_eq_457
+0 1
+.names ALUOp_3 CONST0 tmp_xor_eq_458
+10 1
+01 1
+.names tmp_xor_eq_458 tmp_xnor_eq_459
+0 1
+.names ALUOp_4 CONST0 tmp_xor_eq_460
+10 1
+01 1
+.names tmp_xor_eq_460 tmp_xnor_eq_461
+0 1
+.names ALUOp_5 CONST1 tmp_xor_eq_462
+10 1
+01 1
+.names tmp_xor_eq_462 tmp_xnor_eq_463
+0 1
+.names ALUOp_6 CONST0 tmp_xor_eq_464
+10 1
+01 1
+.names tmp_xor_eq_464 tmp_xnor_eq_465
+0 1
+.names tmp_xnor_eq_453 tmp_xnor_eq_455 tmp_and_red_466
+11 1
+.names tmp_and_red_466 tmp_xnor_eq_457 tmp_and_red_467
+11 1
+.names tmp_and_red_467 tmp_xnor_eq_459 tmp_and_red_468
+11 1
+.names tmp_and_red_468 tmp_xnor_eq_461 tmp_and_red_469
+11 1
+.names tmp_and_red_469 tmp_xnor_eq_463 tmp_and_red_470
+11 1
+.names tmp_and_red_470 tmp_xnor_eq_465 tmp_and_red_471
+11 1
+.names tmp_and_red_471 CONST1 tmp_EQ_0
+11 1
+.names funct3_0 CONST0 tmp_xor_eq_472
+10 1
+01 1
+.names tmp_xor_eq_472 tmp_xnor_eq_473
+0 1
+.names funct3_1 CONST0 tmp_xor_eq_474
+10 1
+01 1
+.names tmp_xor_eq_474 tmp_xnor_eq_475
+0 1
+.names funct3_2 CONST0 tmp_xor_eq_476
+10 1
+01 1
+.names tmp_xor_eq_476 tmp_xnor_eq_477
+0 1
+.names tmp_xnor_eq_473 tmp_xnor_eq_475 tmp_and_red_478
+11 1
+.names tmp_and_red_478 tmp_xnor_eq_477 tmp_and_red_479
+11 1
+.names tmp_and_red_479 CONST1 tmp_EQ_0
+11 1
+.names funct3_0 CONST1 tmp_xor_eq_480
+10 1
+01 1
+.names tmp_xor_eq_480 tmp_xnor_eq_481
+0 1
+.names funct3_1 CONST0 tmp_xor_eq_482
+10 1
+01 1
+.names tmp_xor_eq_482 tmp_xnor_eq_483
+0 1
+.names funct3_2 CONST0 tmp_xor_eq_484
+10 1
+01 1
+.names tmp_xor_eq_484 tmp_xnor_eq_485
+0 1
+.names tmp_xnor_eq_481 tmp_xnor_eq_483 tmp_and_red_486
+11 1
+.names tmp_and_red_486 tmp_xnor_eq_485 tmp_and_red_487
+11 1
+.names tmp_and_red_487 CONST1 tmp_EQ_0
+11 1
+.names funct3_0 CONST0 tmp_xor_eq_488
+10 1
+01 1
+.names tmp_xor_eq_488 tmp_xnor_eq_489
+0 1
+.names funct3_1 CONST1 tmp_xor_eq_490
+10 1
+01 1
+.names tmp_xor_eq_490 tmp_xnor_eq_491
+0 1
+.names funct3_2 CONST0 tmp_xor_eq_492
+10 1
+01 1
+.names tmp_xor_eq_492 tmp_xnor_eq_493
+0 1
+.names tmp_xnor_eq_489 tmp_xnor_eq_491 tmp_and_red_494
+11 1
+.names tmp_and_red_494 tmp_xnor_eq_493 tmp_and_red_495
+11 1
+.names tmp_and_red_495 CONST1 tmp_EQ_0
+11 1
+.names tmp_EQ_0 CONST0 ALU_operation_0 mux_ALU_operation_0_0
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 ALU_operation_1 mux_ALU_operation_0_1
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 ALU_operation_2 mux_ALU_operation_0_2
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 ALU_operation_3 mux_ALU_operation_0_3
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 ALU_operation_4 mux_ALU_operation_0_4
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 mux_ALU_operation_0_0 mux_ALU_operation_0_0
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 mux_ALU_operation_0_1 mux_ALU_operation_0_1
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 mux_ALU_operation_0_2 mux_ALU_operation_0_2
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 mux_ALU_operation_0_3 mux_ALU_operation_0_3
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 mux_ALU_operation_0_4 mux_ALU_operation_0_4
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 mux_ALU_operation_0_0 mux_ALU_operation_0_0
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 mux_ALU_operation_0_1 mux_ALU_operation_0_1
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 mux_ALU_operation_0_2 mux_ALU_operation_0_2
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 mux_ALU_operation_0_3 mux_ALU_operation_0_3
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 mux_ALU_operation_0_4 mux_ALU_operation_0_4
+11- 1
+0-1 1
+.names ALUOp_0 CONST1 tmp_xor_eq_496
+10 1
+01 1
+.names tmp_xor_eq_496 tmp_xnor_eq_497
+0 1
+.names ALUOp_1 CONST1 tmp_xor_eq_498
+10 1
+01 1
+.names tmp_xor_eq_498 tmp_xnor_eq_499
+0 1
+.names ALUOp_2 CONST0 tmp_xor_eq_500
+10 1
+01 1
+.names tmp_xor_eq_500 tmp_xnor_eq_501
+0 1
+.names ALUOp_3 CONST0 tmp_xor_eq_502
+10 1
+01 1
+.names tmp_xor_eq_502 tmp_xnor_eq_503
+0 1
+.names ALUOp_4 CONST0 tmp_xor_eq_504
+10 1
+01 1
+.names tmp_xor_eq_504 tmp_xnor_eq_505
+0 1
+.names ALUOp_5 CONST1 tmp_xor_eq_506
+10 1
+01 1
+.names tmp_xor_eq_506 tmp_xnor_eq_507
+0 1
+.names ALUOp_6 CONST1 tmp_xor_eq_508
+10 1
+01 1
+.names tmp_xor_eq_508 tmp_xnor_eq_509
+0 1
+.names tmp_xnor_eq_497 tmp_xnor_eq_499 tmp_and_red_510
+11 1
+.names tmp_and_red_510 tmp_xnor_eq_501 tmp_and_red_511
+11 1
+.names tmp_and_red_511 tmp_xnor_eq_503 tmp_and_red_512
+11 1
+.names tmp_and_red_512 tmp_xnor_eq_505 tmp_and_red_513
+11 1
+.names tmp_and_red_513 tmp_xnor_eq_507 tmp_and_red_514
+11 1
+.names tmp_and_red_514 tmp_xnor_eq_509 tmp_and_red_515
+11 1
+.names tmp_and_red_515 CONST1 tmp_EQ_0
+11 1
+.names funct3_0 CONST0 tmp_xor_eq_516
+10 1
+01 1
+.names tmp_xor_eq_516 tmp_xnor_eq_517
+0 1
+.names funct3_1 CONST0 tmp_xor_eq_518
+10 1
+01 1
+.names tmp_xor_eq_518 tmp_xnor_eq_519
+0 1
+.names funct3_2 CONST0 tmp_xor_eq_520
+10 1
+01 1
+.names tmp_xor_eq_520 tmp_xnor_eq_521
+0 1
+.names tmp_xnor_eq_517 tmp_xnor_eq_519 tmp_and_red_522
+11 1
+.names tmp_and_red_522 tmp_xnor_eq_521 tmp_and_red_523
+11 1
+.names tmp_and_red_523 CONST1 tmp_EQ_0
+11 1
+.names funct3_0 CONST1 tmp_xor_eq_524
+10 1
+01 1
+.names tmp_xor_eq_524 tmp_xnor_eq_525
+0 1
+.names funct3_1 CONST0 tmp_xor_eq_526
+10 1
+01 1
+.names tmp_xor_eq_526 tmp_xnor_eq_527
+0 1
+.names funct3_2 CONST0 tmp_xor_eq_528
+10 1
+01 1
+.names tmp_xor_eq_528 tmp_xnor_eq_529
+0 1
+.names tmp_xnor_eq_525 tmp_xnor_eq_527 tmp_and_red_530
+11 1
+.names tmp_and_red_530 tmp_xnor_eq_529 tmp_and_red_531
+11 1
+.names tmp_and_red_531 CONST1 tmp_EQ_0
+11 1
+.names funct3_0 CONST0 tmp_xor_eq_532
+10 1
+01 1
+.names tmp_xor_eq_532 tmp_xnor_eq_533
+0 1
+.names funct3_1 CONST0 tmp_xor_eq_534
+10 1
+01 1
+.names tmp_xor_eq_534 tmp_xnor_eq_535
+0 1
+.names funct3_2 CONST1 tmp_xor_eq_536
+10 1
+01 1
+.names tmp_xor_eq_536 tmp_xnor_eq_537
+0 1
+.names tmp_xnor_eq_533 tmp_xnor_eq_535 tmp_and_red_538
+11 1
+.names tmp_and_red_538 tmp_xnor_eq_537 tmp_and_red_539
+11 1
+.names tmp_and_red_539 CONST1 tmp_EQ_0
+11 1
+.names funct3_0 CONST1 tmp_xor_eq_540
+10 1
+01 1
+.names tmp_xor_eq_540 tmp_xnor_eq_541
+0 1
+.names funct3_1 CONST0 tmp_xor_eq_542
+10 1
+01 1
+.names tmp_xor_eq_542 tmp_xnor_eq_543
+0 1
+.names funct3_2 CONST1 tmp_xor_eq_544
+10 1
+01 1
+.names tmp_xor_eq_544 tmp_xnor_eq_545
+0 1
+.names tmp_xnor_eq_541 tmp_xnor_eq_543 tmp_and_red_546
+11 1
+.names tmp_and_red_546 tmp_xnor_eq_545 tmp_and_red_547
+11 1
+.names tmp_and_red_547 CONST1 tmp_EQ_0
+11 1
+.names funct3_0 CONST0 tmp_xor_eq_548
+10 1
+01 1
+.names tmp_xor_eq_548 tmp_xnor_eq_549
+0 1
+.names funct3_1 CONST1 tmp_xor_eq_550
+10 1
+01 1
+.names tmp_xor_eq_550 tmp_xnor_eq_551
+0 1
+.names funct3_2 CONST1 tmp_xor_eq_552
+10 1
+01 1
+.names tmp_xor_eq_552 tmp_xnor_eq_553
+0 1
+.names tmp_xnor_eq_549 tmp_xnor_eq_551 tmp_and_red_554
+11 1
+.names tmp_and_red_554 tmp_xnor_eq_553 tmp_and_red_555
+11 1
+.names tmp_and_red_555 CONST1 tmp_EQ_0
+11 1
+.names funct3_0 CONST1 tmp_xor_eq_556
+10 1
+01 1
+.names tmp_xor_eq_556 tmp_xnor_eq_557
+0 1
+.names funct3_1 CONST1 tmp_xor_eq_558
+10 1
+01 1
+.names tmp_xor_eq_558 tmp_xnor_eq_559
+0 1
+.names funct3_2 CONST1 tmp_xor_eq_560
+10 1
+01 1
+.names tmp_xor_eq_560 tmp_xnor_eq_561
+0 1
+.names tmp_xnor_eq_557 tmp_xnor_eq_559 tmp_and_red_562
+11 1
+.names tmp_and_red_562 tmp_xnor_eq_561 tmp_and_red_563
+11 1
+.names tmp_and_red_563 CONST1 tmp_EQ_0
+11 1
+.names tmp_EQ_0 CONST1 ALU_operation_0 mux_ALU_operation_0_0
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 ALU_operation_1 mux_ALU_operation_0_1
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST1 ALU_operation_2 mux_ALU_operation_0_2
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 ALU_operation_3 mux_ALU_operation_0_3
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST1 ALU_operation_4 mux_ALU_operation_0_4
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 mux_ALU_operation_0_0 mux_ALU_operation_0_0
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 mux_ALU_operation_0_1 mux_ALU_operation_0_1
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST1 mux_ALU_operation_0_2 mux_ALU_operation_0_2
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 mux_ALU_operation_0_3 mux_ALU_operation_0_3
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST1 mux_ALU_operation_0_4 mux_ALU_operation_0_4
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST1 mux_ALU_operation_0_0 mux_ALU_operation_0_0
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST1 mux_ALU_operation_0_1 mux_ALU_operation_0_1
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 mux_ALU_operation_0_2 mux_ALU_operation_0_2
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 mux_ALU_operation_0_3 mux_ALU_operation_0_3
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST1 mux_ALU_operation_0_4 mux_ALU_operation_0_4
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 mux_ALU_operation_0_0 mux_ALU_operation_0_0
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST1 mux_ALU_operation_0_1 mux_ALU_operation_0_1
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 mux_ALU_operation_0_2 mux_ALU_operation_0_2
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 mux_ALU_operation_0_3 mux_ALU_operation_0_3
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST1 mux_ALU_operation_0_4 mux_ALU_operation_0_4
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST1 mux_ALU_operation_0_0 mux_ALU_operation_0_0
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 mux_ALU_operation_0_1 mux_ALU_operation_0_1
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 mux_ALU_operation_0_2 mux_ALU_operation_0_2
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 mux_ALU_operation_0_3 mux_ALU_operation_0_3
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST1 mux_ALU_operation_0_4 mux_ALU_operation_0_4
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 mux_ALU_operation_0_0 mux_ALU_operation_0_0
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 mux_ALU_operation_0_1 mux_ALU_operation_0_1
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 mux_ALU_operation_0_2 mux_ALU_operation_0_2
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 mux_ALU_operation_0_3 mux_ALU_operation_0_3
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST1 mux_ALU_operation_0_4 mux_ALU_operation_0_4
+11- 1
+0-1 1
+.names ALUOp_0 CONST1 tmp_xor_eq_564
+10 1
+01 1
+.names tmp_xor_eq_564 tmp_xnor_eq_565
+0 1
+.names ALUOp_1 CONST1 tmp_xor_eq_566
+10 1
+01 1
+.names tmp_xor_eq_566 tmp_xnor_eq_567
+0 1
+.names ALUOp_2 CONST1 tmp_xor_eq_568
+10 1
+01 1
+.names tmp_xor_eq_568 tmp_xnor_eq_569
+0 1
+.names ALUOp_3 CONST1 tmp_xor_eq_570
+10 1
+01 1
+.names tmp_xor_eq_570 tmp_xnor_eq_571
+0 1
+.names ALUOp_4 CONST0 tmp_xor_eq_572
+10 1
+01 1
+.names tmp_xor_eq_572 tmp_xnor_eq_573
+0 1
+.names ALUOp_5 CONST1 tmp_xor_eq_574
+10 1
+01 1
+.names tmp_xor_eq_574 tmp_xnor_eq_575
+0 1
+.names ALUOp_6 CONST1 tmp_xor_eq_576
+10 1
+01 1
+.names tmp_xor_eq_576 tmp_xnor_eq_577
+0 1
+.names tmp_xnor_eq_565 tmp_xnor_eq_567 tmp_and_red_578
+11 1
+.names tmp_and_red_578 tmp_xnor_eq_569 tmp_and_red_579
+11 1
+.names tmp_and_red_579 tmp_xnor_eq_571 tmp_and_red_580
+11 1
+.names tmp_and_red_580 tmp_xnor_eq_573 tmp_and_red_581
+11 1
+.names tmp_and_red_581 tmp_xnor_eq_575 tmp_and_red_582
+11 1
+.names tmp_and_red_582 tmp_xnor_eq_577 tmp_and_red_583
+11 1
+.names tmp_and_red_583 CONST1 tmp_EQ_0
+11 1
+.names ALUOp_0 CONST1 tmp_xor_eq_584
+10 1
+01 1
+.names tmp_xor_eq_584 tmp_xnor_eq_585
+0 1
+.names ALUOp_1 CONST1 tmp_xor_eq_586
+10 1
+01 1
+.names tmp_xor_eq_586 tmp_xnor_eq_587
+0 1
+.names ALUOp_2 CONST1 tmp_xor_eq_588
+10 1
+01 1
+.names tmp_xor_eq_588 tmp_xnor_eq_589
+0 1
+.names ALUOp_3 CONST0 tmp_xor_eq_590
+10 1
+01 1
+.names tmp_xor_eq_590 tmp_xnor_eq_591
+0 1
+.names ALUOp_4 CONST0 tmp_xor_eq_592
+10 1
+01 1
+.names tmp_xor_eq_592 tmp_xnor_eq_593
+0 1
+.names ALUOp_5 CONST1 tmp_xor_eq_594
+10 1
+01 1
+.names tmp_xor_eq_594 tmp_xnor_eq_595
+0 1
+.names ALUOp_6 CONST1 tmp_xor_eq_596
+10 1
+01 1
+.names tmp_xor_eq_596 tmp_xnor_eq_597
+0 1
+.names tmp_xnor_eq_585 tmp_xnor_eq_587 tmp_and_red_598
+11 1
+.names tmp_and_red_598 tmp_xnor_eq_589 tmp_and_red_599
+11 1
+.names tmp_and_red_599 tmp_xnor_eq_591 tmp_and_red_600
+11 1
+.names tmp_and_red_600 tmp_xnor_eq_593 tmp_and_red_601
+11 1
+.names tmp_and_red_601 tmp_xnor_eq_595 tmp_and_red_602
+11 1
+.names tmp_and_red_602 tmp_xnor_eq_597 tmp_and_red_603
+11 1
+.names tmp_and_red_603 CONST1 tmp_EQ_0
+11 1
+.names tmp_EQ_0 tmp_EQ_0 tmp_OR_0
 1- 1
 -1 1
-
-.names tmp_or_22 tmp_and_21 tmp_or_23
-1- 1
--1 1
-
-.names enable count_0 tmp_add_0_0 tmp_mux_24
-01- 1
-1-1 1
-
-.names rst tmp_mux_24 CONST0 tmp_mux_25
-01- 1
-1-1 1
-
-.latch tmp_mux_25 count_0 re clk
-
-.names enable count_1 tmp_add_0_1 tmp_mux_26
-01- 1
-1-1 1
-
-.names rst tmp_mux_26 CONST0 tmp_mux_27
-01- 1
-1-1 1
-
-.latch tmp_mux_27 count_1 re clk
-
-.names enable count_2 tmp_add_0_2 tmp_mux_28
-01- 1
-1-1 1
-
-.names rst tmp_mux_28 CONST0 tmp_mux_29
-01- 1
-1-1 1
-
-.latch tmp_mux_29 count_2 re clk
-
-.names enable count_3 tmp_add_0_3 tmp_mux_30
-01- 1
-1-1 1
-
-.names rst tmp_mux_30 CONST0 tmp_mux_31
-01- 1
-1-1 1
-
-.latch tmp_mux_31 count_3 re clk
-
+.names ALUOp_0 CONST1 tmp_xor_eq_604
+10 1
+01 1
+.names tmp_xor_eq_604 tmp_xnor_eq_605
+0 1
+.names ALUOp_1 CONST1 tmp_xor_eq_606
+10 1
+01 1
+.names tmp_xor_eq_606 tmp_xnor_eq_607
+0 1
+.names ALUOp_2 CONST1 tmp_xor_eq_608
+10 1
+01 1
+.names tmp_xor_eq_608 tmp_xnor_eq_609
+0 1
+.names ALUOp_3 CONST1 tmp_xor_eq_610
+10 1
+01 1
+.names tmp_xor_eq_610 tmp_xnor_eq_611
+0 1
+.names ALUOp_4 CONST0 tmp_xor_eq_612
+10 1
+01 1
+.names tmp_xor_eq_612 tmp_xnor_eq_613
+0 1
+.names ALUOp_5 CONST1 tmp_xor_eq_614
+10 1
+01 1
+.names tmp_xor_eq_614 tmp_xnor_eq_615
+0 1
+.names ALUOp_6 CONST1 tmp_xor_eq_616
+10 1
+01 1
+.names tmp_xor_eq_616 tmp_xnor_eq_617
+0 1
+.names tmp_xnor_eq_605 tmp_xnor_eq_607 tmp_and_red_618
+11 1
+.names tmp_and_red_618 tmp_xnor_eq_609 tmp_and_red_619
+11 1
+.names tmp_and_red_619 tmp_xnor_eq_611 tmp_and_red_620
+11 1
+.names tmp_and_red_620 tmp_xnor_eq_613 tmp_and_red_621
+11 1
+.names tmp_and_red_621 tmp_xnor_eq_615 tmp_and_red_622
+11 1
+.names tmp_and_red_622 tmp_xnor_eq_617 tmp_and_red_623
+11 1
+.names tmp_and_red_623 CONST1 tmp_EQ_0
+11 1
+.names ALUOp_0 CONST1 tmp_xor_eq_624
+10 1
+01 1
+.names tmp_xor_eq_624 tmp_xnor_eq_625
+0 1
+.names ALUOp_1 CONST1 tmp_xor_eq_626
+10 1
+01 1
+.names tmp_xor_eq_626 tmp_xnor_eq_627
+0 1
+.names ALUOp_2 CONST1 tmp_xor_eq_628
+10 1
+01 1
+.names tmp_xor_eq_628 tmp_xnor_eq_629
+0 1
+.names ALUOp_3 CONST0 tmp_xor_eq_630
+10 1
+01 1
+.names tmp_xor_eq_630 tmp_xnor_eq_631
+0 1
+.names ALUOp_4 CONST0 tmp_xor_eq_632
+10 1
+01 1
+.names tmp_xor_eq_632 tmp_xnor_eq_633
+0 1
+.names ALUOp_5 CONST1 tmp_xor_eq_634
+10 1
+01 1
+.names tmp_xor_eq_634 tmp_xnor_eq_635
+0 1
+.names ALUOp_6 CONST1 tmp_xor_eq_636
+10 1
+01 1
+.names tmp_xor_eq_636 tmp_xnor_eq_637
+0 1
+.names tmp_xnor_eq_625 tmp_xnor_eq_627 tmp_and_red_638
+11 1
+.names tmp_and_red_638 tmp_xnor_eq_629 tmp_and_red_639
+11 1
+.names tmp_and_red_639 tmp_xnor_eq_631 tmp_and_red_640
+11 1
+.names tmp_and_red_640 tmp_xnor_eq_633 tmp_and_red_641
+11 1
+.names tmp_and_red_641 tmp_xnor_eq_635 tmp_and_red_642
+11 1
+.names tmp_and_red_642 tmp_xnor_eq_637 tmp_and_red_643
+11 1
+.names tmp_and_red_643 CONST1 tmp_EQ_0
+11 1
+.names tmp_EQ_0 CONST0 ALU_operation_0 mux_ALU_operation_0_0
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 ALU_operation_1 mux_ALU_operation_0_1
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 ALU_operation_2 mux_ALU_operation_0_2
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 ALU_operation_3 mux_ALU_operation_0_3
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 ALU_operation_4 mux_ALU_operation_0_4
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 mux_ALU_operation_0_0 mux_ALU_operation_0_0
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 mux_ALU_operation_0_1 mux_ALU_operation_0_1
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 mux_ALU_operation_0_2 mux_ALU_operation_0_2
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 mux_ALU_operation_0_3 mux_ALU_operation_0_3
+11- 1
+0-1 1
+.names tmp_EQ_0 CONST0 mux_ALU_operation_0_4 mux_ALU_operation_0_4
+11- 1
+0-1 1
+.names tmp_OR_0 mux_ALU_operation_0_0 CONST0 mux_ALU_operation_0_0
+11- 1
+0-1 1
+.names tmp_OR_0 mux_ALU_operation_0_1 CONST0 mux_ALU_operation_0_1
+11- 1
+0-1 1
+.names tmp_OR_0 mux_ALU_operation_0_2 CONST0 mux_ALU_operation_0_2
+11- 1
+0-1 1
+.names tmp_OR_0 mux_ALU_operation_0_3 CONST0 mux_ALU_operation_0_3
+11- 1
+0-1 1
+.names tmp_OR_0 mux_ALU_operation_0_4 CONST0 mux_ALU_operation_0_4
+11- 1
+0-1 1
+.names tmp_EQ_0 mux_ALU_operation_0_0 mux_ALU_operation_0_0 mux_ALU_operation_0_0
+11- 1
+0-1 1
+.names tmp_EQ_0 mux_ALU_operation_0_1 mux_ALU_operation_0_1 mux_ALU_operation_0_1
+11- 1
+0-1 1
+.names tmp_EQ_0 mux_ALU_operation_0_2 mux_ALU_operation_0_2 mux_ALU_operation_0_2
+11- 1
+0-1 1
+.names tmp_EQ_0 mux_ALU_operation_0_3 mux_ALU_operation_0_3 mux_ALU_operation_0_3
+11- 1
+0-1 1
+.names tmp_EQ_0 mux_ALU_operation_0_4 mux_ALU_operation_0_4 mux_ALU_operation_0_4
+11- 1
+0-1 1
+.names tmp_EQ_0 mux_ALU_operation_0_0 mux_ALU_operation_0_0 mux_ALU_operation_0_0
+11- 1
+0-1 1
+.names tmp_EQ_0 mux_ALU_operation_0_1 mux_ALU_operation_0_1 mux_ALU_operation_0_1
+11- 1
+0-1 1
+.names tmp_EQ_0 mux_ALU_operation_0_2 mux_ALU_operation_0_2 mux_ALU_operation_0_2
+11- 1
+0-1 1
+.names tmp_EQ_0 mux_ALU_operation_0_3 mux_ALU_operation_0_3 mux_ALU_operation_0_3
+11- 1
+0-1 1
+.names tmp_EQ_0 mux_ALU_operation_0_4 mux_ALU_operation_0_4 mux_ALU_operation_0_4
+11- 1
+0-1 1
+.names tmp_EQ_0 mux_ALU_operation_0_0 mux_ALU_operation_0_0 mux_ALU_operation_0_0
+11- 1
+0-1 1
+.names tmp_EQ_0 mux_ALU_operation_0_1 mux_ALU_operation_0_1 mux_ALU_operation_0_1
+11- 1
+0-1 1
+.names tmp_EQ_0 mux_ALU_operation_0_2 mux_ALU_operation_0_2 mux_ALU_operation_0_2
+11- 1
+0-1 1
+.names tmp_EQ_0 mux_ALU_operation_0_3 mux_ALU_operation_0_3 mux_ALU_operation_0_3
+11- 1
+0-1 1
+.names tmp_EQ_0 mux_ALU_operation_0_4 mux_ALU_operation_0_4 mux_ALU_operation_0_4
+11- 1
+0-1 1
+.names tmp_EQ_0 mux_ALU_operation_0_0 mux_ALU_operation_0_0 mux_ALU_operation_0_0
+11- 1
+0-1 1
+.names tmp_EQ_0 mux_ALU_operation_0_1 mux_ALU_operation_0_1 mux_ALU_operation_0_1
+11- 1
+0-1 1
+.names tmp_EQ_0 mux_ALU_operation_0_2 mux_ALU_operation_0_2 mux_ALU_operation_0_2
+11- 1
+0-1 1
+.names tmp_EQ_0 mux_ALU_operation_0_3 mux_ALU_operation_0_3 mux_ALU_operation_0_3
+11- 1
+0-1 1
+.names tmp_EQ_0 mux_ALU_operation_0_4 mux_ALU_operation_0_4 mux_ALU_operation_0_4
+11- 1
+0-1 1
+.names tmp_EQ_0 mux_ALU_operation_0_0 mux_ALU_operation_0_0 mux_ALU_operation_0_0
+11- 1
+0-1 1
+.names tmp_EQ_0 mux_ALU_operation_0_1 mux_ALU_operation_0_1 mux_ALU_operation_0_1
+11- 1
+0-1 1
+.names tmp_EQ_0 mux_ALU_operation_0_2 mux_ALU_operation_0_2 mux_ALU_operation_0_2
+11- 1
+0-1 1
+.names tmp_EQ_0 mux_ALU_operation_0_3 mux_ALU_operation_0_3 mux_ALU_operation_0_3
+11- 1
+0-1 1
+.names tmp_EQ_0 mux_ALU_operation_0_4 mux_ALU_operation_0_4 mux_ALU_operation_0_4
+11- 1
+0-1 1
+.names tmp_OR_0 mux_ALU_operation_0_0 mux_ALU_operation_0_0 mux_ALU_operation_0_0
+11- 1
+0-1 1
+.names tmp_OR_0 mux_ALU_operation_0_1 mux_ALU_operation_0_1 mux_ALU_operation_0_1
+11- 1
+0-1 1
+.names tmp_OR_0 mux_ALU_operation_0_2 mux_ALU_operation_0_2 mux_ALU_operation_0_2
+11- 1
+0-1 1
+.names tmp_OR_0 mux_ALU_operation_0_3 mux_ALU_operation_0_3 mux_ALU_operation_0_3
+11- 1
+0-1 1
+.names tmp_OR_0 mux_ALU_operation_0_4 mux_ALU_operation_0_4 mux_ALU_operation_0_4
+11- 1
+0-1 1
+.names mux_ALU_operation_0_0 CONST1 ALU_operation_0
+11 1
 .end

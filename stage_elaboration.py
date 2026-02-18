@@ -1,10 +1,11 @@
 # stage_elaboration.py
 # High-level elaboration: build a high-level netlist (Module/Signal/Gate)
-# from the PyVerilog AST. Minimal support for the counter example:
-# - ports (input/output) + reg/wire widths
-# - always @(posedge clk) with if(rst) / else if(enable)
-# - nonblocking assignments <=
-# - expressions: Identifier, IntConst, Plus
+# from the PyVerilog AST.
+# Supports:
+# - Ports (input/output)
+# - Sequential Logic: always @(posedge clk)
+# - Combinational Logic: always @(*) with nested if-else (MUX inference)
+# - Operators: +, ==, &&, ||
 
 import os
 import re
@@ -15,15 +16,41 @@ from pyverilog.vparser.ast import (
     Ioport, Input, Output, Wire, Reg,
     Width, IntConst, Identifier,
     Always, SensList, Sens, Block,
-    IfStatement, NonblockingSubstitution,
-    Plus
+    IfStatement, NonblockingSubstitution, BlockingSubstitution,
+    Plus, Eq, Land, Lor
 )
+
+# -------------------------------------------------------------------------
+# Helpers
+# -------------------------------------------------------------------------
+
+def _parse_const_value(val_str):
+    """
+    Parses Verilog constants like "4'b1010", "32'd100", or "5'bxxxxx"
+    """
+    if "'" in val_str:
+        width_part, val_part = val_str.split("'")
+        base = val_part[0].lower() # 'b', 'h', 'd'
+        number = val_part[1:]
+        
+        # Handle "don't cares" (x) by treating them as 0 for now
+        number = number.replace('x', '0').replace('z', '0')
+        
+        try:
+            if base == 'b':
+                return int(number, 2)
+            elif base == 'h':
+                return int(number, 16)
+            elif base == 'd':
+                return int(number)
+        except ValueError:
+            return 0
+    return int(val_str)
 
 def _parse_width(node):
     """Return bit-width as int. If no width, return 1."""
     if node is None:
         return 1
-    # Width: msb, lsb are IntConst
     if isinstance(node, Width):
         msb = int(node.msb.value, 0)
         lsb = int(node.lsb.value, 0)
@@ -37,194 +64,264 @@ def _get_or_create_signal(mod: Module, name: str, width=1, **attrs):
         s = Signal(name=name, width=width, **attrs)
         mod.add_signal(s)
     else:
-        # Update width/attrs if needed (keep it simple)
+        # Update width if we learned it's larger
         if s.width == 1 and width != 1:
             s.width = width
-        # OR the attributes
+        # Merge attributes
         s.is_input = s.is_input or attrs.get("is_input", False)
         s.is_output = s.is_output or attrs.get("is_output", False)
         s.is_reg = s.is_reg or attrs.get("is_reg", False)
     return s
 
-def _intconst_decl_width(value: str) -> int | None:
-    """
-    Parse Verilog sized constant like: 4'b0, 8'hFF, 16'd3.
-    Return declared width if present, else None.
-    """
+def _intconst_decl_width(value: str):
+    """Parse Verilog sized constant like: 4'b0 -> returns 4."""
     m = re.match(r"^\s*(\d+)\s*'[bBdDhHoO].*$", value)
     return int(m.group(1)) if m else None
 
+# -------------------------------------------------------------------------
+# Expression Parsing (Recursion)
+# -------------------------------------------------------------------------
 
-def _expr_to_signal_and_gates(mod: Module, expr, expected_width: int | None = None):
+def _expr_to_signal_and_gates(mod: Module, expr, expected_width=None):
+    """
+    Converts an AST expression (A+B, A==B) into Signals and Gates.
+    Returns: (output_signal, list_of_new_gates)
+    """
     extra_gates = []
 
+    # 1. Identifier (Variables)
     if isinstance(expr, Identifier):
         s = _get_or_create_signal(mod, expr.name)
+        # Propagate expected width backwards if signal is generic
         if expected_width is not None and s.width == 1 and expected_width != 1:
             s.width = expected_width
         return s, extra_gates
 
+    # 2. Integer Constants
     if isinstance(expr, IntConst):
-        declared = _intconst_decl_width(expr.value)
-        w = declared or expected_width or 1
-        const_name = f"CONST_{expr.value}"
+        val = _parse_const_value(expr.value)
+        declared_w = _intconst_decl_width(expr.value)
+        w = declared_w or expected_width or 32 # Default to 32 if unknown
+        
+        const_name = f"CONST_{val}_{w}b_{id(expr)}"
         s = _get_or_create_signal(mod, const_name, width=w)
         return s, extra_gates
 
-    if isinstance(expr, Plus):
-        a_sig, a_g = _expr_to_signal_and_gates(mod, expr.left, expected_width=expected_width)
-        b_sig, b_g = _expr_to_signal_and_gates(mod, expr.right, expected_width=expected_width)
+    # 3. Binary Operators
+    op_map = {
+        Plus: "ADD",
+        Eq:   "EQ",
+        Land: "AND",
+        Lor:  "OR"
+    }
+    
+    expr_type = type(expr)
+    if expr_type in op_map:
+        op_name = op_map[expr_type]
+        
+        # Recurse Left/Right
+        # For Logic/Comparison (EQ, AND, OR), operands don't need to match output width (output is 1)
+        # For Arithmetic (ADD), they usually do.
+        req_w = expected_width if op_name == "ADD" else None
+        
+        a_sig, a_g = _expr_to_signal_and_gates(mod, expr.left, expected_width=req_w)
+        b_sig, b_g = _expr_to_signal_and_gates(mod, expr.right, expected_width=req_w)
         extra_gates.extend(a_g)
         extra_gates.extend(b_g)
 
-        out_w = expected_width or max(a_sig.width, b_sig.width)
-        tmp_name = f"tmp_add_{len(mod.gates)}"
+        # Determine Output Width
+        if op_name in ["EQ", "AND", "OR"]:
+            out_w = 1
+        else:
+            out_w = expected_width or max(a_sig.width, b_sig.width)
+
+        tmp_name = f"tmp_{op_name}_{len(mod.gates)}"
         tmp = _get_or_create_signal(mod, tmp_name, width=out_w)
 
-        extra_gates.append(Gate("ADD", [a_sig, b_sig], tmp))
+        extra_gates.append(Gate(op_name, [a_sig, b_sig], tmp))
         return tmp, extra_gates
 
     raise NotImplementedError(f"Expression not supported yet: {type(expr).__name__}")
 
+# -------------------------------------------------------------------------
+# MUX Tree Building (For nested if-else)
+# -------------------------------------------------------------------------
+
+def _build_mux_tree(mod, stmt, target_name):
+    """
+    Recursively converts a statement (Block, If, or Assignment) into a Signal.
+    Used for Combinational Logic (always @*).
+    Returns: (result_signal, list_of_gates)
+    """
+    gates = []
+
+    # Case A: Block (begin ... end) -> just recurse on the content
+    if isinstance(stmt, Block):
+        # We assume the block ends with the relevant assignment or logic
+        # For ALUControl, usually just one statement inside or a chain
+        if not stmt.statements:
+            return None, []
+        # In a real compiler we'd handle multiple statements. 
+        # For this MVP, we assume the block wraps the logic flow.
+        return _build_mux_tree(mod, stmt.statements[0], target_name)
+
+    # Case B: Assignment (Base Case)
+    # Handles: ALU_operation = ...
+    if isinstance(stmt, BlockingSubstitution) or isinstance(stmt, NonblockingSubstitution):
+        if stmt.left.var.name != target_name:
+            # This assignment is for a different variable, ignore in this tree pass
+            # (In a full synth, we'd need to handle multiple targets)
+            return None, []
+        
+        # Convert RHS to signal
+        target_sig = mod.get_signal(target_name)
+        rhs_sig, g = _expr_to_signal_and_gates(mod, stmt.right.var, expected_width=target_sig.width)
+        return rhs_sig, g
+
+    # Case C: If Statement (Recursive MUX)
+    if isinstance(stmt, IfStatement):
+        # 1. Condition
+        cond_sig, cond_gates = _expr_to_signal_and_gates(mod, stmt.cond)
+        gates.extend(cond_gates)
+
+        # 2. True Branch
+        true_sig, true_gates = _build_mux_tree(mod, stmt.true_statement, target_name)
+        gates.extend(true_gates)
+
+        # 3. False Branch
+        if stmt.false_statement:
+            false_sig, false_gates = _build_mux_tree(mod, stmt.false_statement, target_name)
+            gates.extend(false_gates)
+        else:
+            # Implicit else: keep previous value (latch inference) 
+            # or default 0 for pure combinational?
+            # For ALUControl, we assume full coverage or latch.
+            # Let's default to the target signal itself (latch behavior) or 0.
+            # Ideally, we should create a 'Latch' warning.
+            false_sig = mod.get_signal(target_name) 
+
+        if true_sig is None or false_sig is None:
+            return None, []
+
+        # 4. Create MUX
+        mux_out_name = f"mux_{target_name}_{len(mod.gates)}"
+        mux_out = _get_or_create_signal(mod, mux_out_name, width=true_sig.width)
+        
+        # Gates convention: MUX [Select, True_Input, False_Input] -> Output
+        gates.append(Gate("MUX", [cond_sig, true_sig, false_sig], mux_out))
+        
+        return mux_out, gates
+
+    return None, []
+
+# -------------------------------------------------------------------------
+# Main Run Loop
+# -------------------------------------------------------------------------
+
 def run(ast):
-    """
-    Entry point called by main.py.
-    Takes PyVerilog AST and returns a Module netlist object.
-    Also writes debug_02_elab.json.
-    """
-    # Navigate: Source -> Description -> ModuleDef
     if not isinstance(ast, Source):
         raise TypeError("Expected PyVerilog Source node as AST root.")
-
+    
     desc = ast.description
-    if desc is None or not isinstance(desc, Description):
-        raise TypeError("AST missing Description node.")
-
-    # For now: pick the first module as top
-    top = None
-    for d in desc.definitions:
-        if isinstance(d, ModuleDef):
-            top = d
-            break
-    if top is None:
-        raise ValueError("No ModuleDef found in AST.")
+    top = next((d for d in desc.definitions if isinstance(d, ModuleDef)), None)
+    if not top: raise ValueError("No ModuleDef found.")
 
     mod = Module(top.name)
 
-    # ---- 1) Ports / signals ----
-    # top.portlist.ports is a list of Ioport
+    # 1. Parse Ports
     for p in top.portlist.ports:
-        if not isinstance(p, Ioport):
-            continue
-
-        first = p.first  # Input/Output/Inout
-        second = p.second  # Wire/Reg
-
-        # Input
-        if isinstance(first, Input):
-            name = first.name
+        if isinstance(p, Ioport):
+            first, second = p.first, p.second
             width = _parse_width(first.width)
-            _get_or_create_signal(mod, name, width=width, is_input=True)
+            if isinstance(first, Input):
+                _get_or_create_signal(mod, first.name, width=width, is_input=True)
+            elif isinstance(first, Output):
+                is_reg = isinstance(second, Reg)
+                _get_or_create_signal(mod, first.name, width=width, is_output=True, is_reg=is_reg)
 
-        # Output (may carry width)
-        elif isinstance(first, Output):
-            name = first.name
-            width = _parse_width(first.width)
-            # Determine if reg
-            is_reg = isinstance(second, Reg)
-            _get_or_create_signal(mod, name, width=width, is_output=True, is_reg=is_reg)
-
-        # Inout not handled in minimal version
-        else:
-            raise NotImplementedError(f"Port direction not supported: {type(first).__name__}")
-
-    # ---- 2) Always blocks: infer DFF + reset/enable behavior ----
+    # 2. Parse Items (Always Blocks)
     for item in top.items:
-        if not isinstance(item, Always):
-            continue
+        if isinstance(item, Always):
+            # Check sensitivity list to distinguish Sequential vs Combinational
+            is_clocked = False
+            senslist = item.sens_list
+            if isinstance(senslist, SensList):
+                for s in senslist.list:
+                    if s.type == "posedge":
+                        is_clocked = True
+            
+            if is_clocked:
+                # --- SEQUENTIAL LOGIC (Counter style) ---
+                # (Existing logic for posedge clk)
+                clk_name = senslist.list[0].sig.name
+                clk_sig = _get_or_create_signal(mod, clk_name, is_input=True)
+                
+                # Assume if(rst)... pattern for MVP
+                body = item.statement
+                if isinstance(body, Block): body = body.statements[0]
+                
+                if isinstance(body, IfStatement):
+                    # Handle Reset
+                    rst_name = body.cond.name
+                    rst_sig = _get_or_create_signal(mod, rst_name)
+                    
+                    # Target Register
+                    then_stmt = body.true_statement
+                    if isinstance(then_stmt, Block): then_stmt = then_stmt.statements[0]
+                    target_name = then_stmt.left.var.name
+                    target_sig = _get_or_create_signal(mod, target_name)
+                    
+                    # Reset Value
+                    rst_val_sig, g_rst = _expr_to_signal_and_gates(mod, then_stmt.right.var, target_sig.width)
+                    for g in g_rst: mod.add_gate(g)
 
-        # Detect posedge clk
-        senslist = item.sens_list
-        clk_name = None
-        if isinstance(senslist, SensList) and senslist.list:
-            s0 = senslist.list[0]
-            if isinstance(s0, Sens) and s0.type == "posedge" and isinstance(s0.sig, Identifier):
-                clk_name = s0.sig.name
+                    # Enable / Else
+                    else_stmt = body.false_statement
+                    if isinstance(else_stmt, IfStatement):
+                        en_name = else_stmt.cond.name
+                        en_sig = _get_or_create_signal(mod, en_name)
+                        
+                        en_then = else_stmt.true_statement
+                        if isinstance(en_then, Block): en_then = en_then.statements[0]
+                        
+                        next_val_sig, g_next = _expr_to_signal_and_gates(mod, en_then.right.var, target_sig.width)
+                        for g in g_next: mod.add_gate(g)
 
-        if clk_name is None:
-            raise NotImplementedError("Only always @(posedge <clk>) supported in minimal version.")
+                        # Create DFF Primitive
+                        mod.add_gate(Gate("DFF_EN_RST", 
+                            [next_val_sig, target_sig, en_sig, rst_val_sig, rst_sig, clk_sig], 
+                            target_sig))
 
-        clk_sig = _get_or_create_signal(mod, clk_name, is_input=True)
+            else:
+                # --- COMBINATIONAL LOGIC (ALU Control style) ---
+                # This handles always @(*) or always @(a, b)
+                # We identify the target variable by looking at the first assignment
+                # (MVP Limitation: assumes always block drives one main variable)
+                
+                # 1. Find the target name (hacky peek)
+                # We need to traverse deep to find the LHS of an assignment
+                # For now, let's just process the whole tree and hope it returns a signal
+                # corresponding to the output port.
+                
+                # In ALUControl, the target is "ALU_operation"
+                # We can try to infer it, or iterate over all outputs to see which one is driven.
+                # Let's try to build the tree for 'ALU_operation' specifically if it exists.
+                
+                target_candidates = [s.name for s in mod.signals.values() if s.is_output or s.is_reg]
+                
+                for target_name in target_candidates:
+                    # Try to build a mux tree for this target
+                    final_sig, gates = _build_mux_tree(mod, item.statement, target_name)
+                    
+                    if final_sig:
+                        # Success! We found logic driving this signal.
+                        # Add the gates
+                        for g in gates: mod.add_gate(g)
+                        
+                        # Connect the final MUX output to the actual wire
+                        # effectively: assign target_name = final_sig
+                        # We use a buffer or just rename (for MVP, buffer)
+                        mod.add_gate(Gate("BUF", [final_sig], mod.get_signal(target_name)))
 
-        # Body is a Block, with an IfStatement inside for this counter example
-        body = item.statement
-        if isinstance(body, Block) and body.statements:
-            stmt0 = body.statements[0]
-        else:
-            stmt0 = body
-
-        if not isinstance(stmt0, IfStatement):
-            raise NotImplementedError("Only if(...) inside always supported in minimal version.")
-
-        # Pattern we handle:
-        # if (rst) count <= 0;
-        # else if (enable) count <= count + 1;
-        rst_cond = stmt0.cond
-        if not isinstance(rst_cond, Identifier):
-            raise NotImplementedError("Reset condition must be Identifier in minimal version.")
-        rst_sig = _get_or_create_signal(mod, rst_cond.name, is_input=True)
-
-        # Then branch: NonblockingSubstitution to count
-        then_stmt = stmt0.true_statement
-        # It may be Block or direct NonblockingSubstitution
-        if isinstance(then_stmt, Block):
-            then_stmt = then_stmt.statements[0]
-
-        if not isinstance(then_stmt, NonblockingSubstitution):
-            raise NotImplementedError("Reset branch must be nonblocking assignment.")
-
-        q_name = then_stmt.left.var.name  # Identifier under Lvalue
-        q_sig = _get_or_create_signal(mod, q_name, is_reg=True)
-
-        # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-        # Key change: propagate expected width using the destination reg width
-        q_w = q_sig.width
-        # <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-
-        d_reset_expr = then_stmt.right.var  # under Rvalue
-        d_reset_sig, g_reset = _expr_to_signal_and_gates(mod, d_reset_expr, expected_width=q_w)
-
-        # Else branch: should be IfStatement(enable) ...
-        else_stmt = stmt0.false_statement
-        if not isinstance(else_stmt, IfStatement):
-            raise NotImplementedError("Expected else-if(enable) pattern in minimal version.")
-
-        en_cond = else_stmt.cond
-        if not isinstance(en_cond, Identifier):
-            raise NotImplementedError("Enable condition must be Identifier in minimal version.")
-        en_sig = _get_or_create_signal(mod, en_cond.name, is_input=True)
-
-        en_then = else_stmt.true_statement
-        if isinstance(en_then, Block):
-            en_then = en_then.statements[0]
-        if not isinstance(en_then, NonblockingSubstitution):
-            raise NotImplementedError("Enable branch must be nonblocking assignment.")
-
-        d_en_expr = en_then.right.var
-        d_en_sig, g_en = _expr_to_signal_and_gates(mod, d_en_expr, expected_width=q_w)
-
-        # Add any gates needed for expressions (e.g., ADD)
-        for g in (g_reset + g_en):
-            mod.add_gate(g)
-
-        # Now create a high-level sequential primitive.
-        # We encode the behavior as a single DFF gate with extra control signals.
-        # Since Gate only supports inputs + output, we pack inputs as:
-        # [D_when_enable, Q_old, enable, D_reset, reset, clk]
-        #
-        # Later stages (bitblast/export) can interpret this convention.
-        mod.add_gate(Gate("DFF_EN_RST", [d_en_sig, q_sig, en_sig, d_reset_sig, rst_sig, clk_sig], q_sig))
-
-    # ---- Save intermediate ----
     mod.save_json("debug_02_elab.json")
     return mod
