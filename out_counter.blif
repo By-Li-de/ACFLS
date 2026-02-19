@@ -1,0 +1,110 @@
+.model counter
+.inputs clk enable rst
+.outputs count_0 count_1 count_2 count_3
+
+.names CONST0
+
+.names CONST1
+1
+
+.names count_0 CONST1 tmp_xor_0
+10 1
+01 1
+.names tmp_xor_0 CONST0 tmp_ADD_0_0
+10 1
+01 1
+.names count_0 CONST1 tmp_and_1
+11 1
+.names count_0 CONST0 tmp_and_2
+11 1
+.names CONST1 CONST0 tmp_and_3
+11 1
+.names tmp_and_1 tmp_and_2 tmp_or_4
+1- 1
+-1 1
+.names tmp_or_4 tmp_and_3 tmp_or_5
+1- 1
+-1 1
+.names count_1 CONST0 tmp_xor_6
+10 1
+01 1
+.names tmp_xor_6 tmp_or_5 tmp_ADD_0_1
+10 1
+01 1
+.names count_1 CONST0 tmp_and_7
+11 1
+.names count_1 tmp_or_5 tmp_and_8
+11 1
+.names CONST0 tmp_or_5 tmp_and_9
+11 1
+.names tmp_and_7 tmp_and_8 tmp_or_10
+1- 1
+-1 1
+.names tmp_or_10 tmp_and_9 tmp_or_11
+1- 1
+-1 1
+.names count_2 CONST0 tmp_xor_12
+10 1
+01 1
+.names tmp_xor_12 tmp_or_11 tmp_ADD_0_2
+10 1
+01 1
+.names count_2 CONST0 tmp_and_13
+11 1
+.names count_2 tmp_or_11 tmp_and_14
+11 1
+.names CONST0 tmp_or_11 tmp_and_15
+11 1
+.names tmp_and_13 tmp_and_14 tmp_or_16
+1- 1
+-1 1
+.names tmp_or_16 tmp_and_15 tmp_or_17
+1- 1
+-1 1
+.names count_3 CONST0 tmp_xor_18
+10 1
+01 1
+.names tmp_xor_18 tmp_or_17 tmp_ADD_0_3
+10 1
+01 1
+.names count_3 CONST0 tmp_and_19
+11 1
+.names count_3 tmp_or_17 tmp_and_20
+11 1
+.names CONST0 tmp_or_17 tmp_and_21
+11 1
+.names tmp_and_19 tmp_and_20 tmp_or_22
+1- 1
+-1 1
+.names tmp_or_22 tmp_and_21 tmp_or_23
+1- 1
+-1 1
+.names enable tmp_ADD_0_0 count_0 tmp_mux_24
+11- 1
+0-1 1
+.names rst CONST0 tmp_mux_24 tmp_mux_25
+11- 1
+0-1 1
+.latch tmp_mux_25 count_0 re clk 0
+.names enable tmp_ADD_0_1 count_1 tmp_mux_26
+11- 1
+0-1 1
+.names rst CONST0 tmp_mux_26 tmp_mux_27
+11- 1
+0-1 1
+.latch tmp_mux_27 count_1 re clk 0
+.names enable tmp_ADD_0_2 count_2 tmp_mux_28
+11- 1
+0-1 1
+.names rst CONST0 tmp_mux_28 tmp_mux_29
+11- 1
+0-1 1
+.latch tmp_mux_29 count_2 re clk 0
+.names enable tmp_ADD_0_3 count_3 tmp_mux_30
+11- 1
+0-1 1
+.names rst CONST0 tmp_mux_30 tmp_mux_31
+11- 1
+0-1 1
+.latch tmp_mux_31 count_3 re clk 0
+.end

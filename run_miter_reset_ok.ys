@@ -1,0 +1,43 @@
+design -reset
+
+# ---- load gate and stash (avoid being removed) ----
+read_blif out_counter.blif
+hierarchy -top counter
+rename counter gate
+design -stash GATE
+
+# ---- load gold (already renamed) and stash ----
+design -reset
+read_blif yosys_counter_renamed.blif
+hierarchy -top counter
+rename counter gold
+design -stash GOLD
+
+# ---- rebuild design with both ----
+design -reset
+design -copy-from GATE -as gate gate
+design -copy-from GOLD -as gold gold
+
+# ---- build miter & flatten ----
+miter -equiv -make_outputs -make_outcmp -flatten gold gate miter
+prep -top miter
+
+select -clear
+select -module miter
+
+# ---- sequential SAT after reset ----
+# t=1: rst asserted (1)
+# t=2..10: rst deasserted (0)
+sat -seq 10 \
+  -set-at 1 in_rst 1 \
+  -set-at 2 in_rst 0 \
+  -set-at 3 in_rst 0 \
+  -set-at 4 in_rst 0 \
+  -set-at 5 in_rst 0 \
+  -set-at 6 in_rst 0 \
+  -set-at 7 in_rst 0 \
+  -set-at 8 in_rst 0 \
+  -set-at 9 in_rst 0 \
+  -set-at 10 in_rst 0 \
+  -show-ports -show-all \
+  -dump_vcd cex_after_reset.vcd

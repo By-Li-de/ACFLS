@@ -1,0 +1,926 @@
+{
+  "creator": "Yosys 0.9 (git sha1 1979e0b)",
+  "modules": {
+    "counter": {
+      "attributes": {
+        "top": 1
+      },
+      "ports": {
+        "clk": {
+          "direction": "input",
+          "bits": [ 2 ]
+        },
+        "enable": {
+          "direction": "input",
+          "bits": [ 3 ]
+        },
+        "rst": {
+          "direction": "input",
+          "bits": [ 4 ]
+        },
+        "count_0": {
+          "direction": "output",
+          "bits": [ 5 ]
+        },
+        "count_1": {
+          "direction": "output",
+          "bits": [ 6 ]
+        },
+        "count_2": {
+          "direction": "output",
+          "bits": [ 7 ]
+        },
+        "count_3": {
+          "direction": "output",
+          "bits": [ 8 ]
+        }
+      },
+      "cells": {
+        "$auto$blifparse.cc:340:parse_blif$31": {
+          "hide_name": 1,
+          "type": "$dff",
+          "parameters": {
+            "CLK_POLARITY": 1,
+            "WIDTH": 1
+          },
+          "attributes": {
+          },
+          "port_directions": {
+            "CLK": "input",
+            "D": "input",
+            "Q": "output"
+          },
+          "connections": {
+            "CLK": [ 2 ],
+            "D": [ 9 ],
+            "Q": [ 5 ]
+          }
+        },
+        "$auto$blifparse.cc:340:parse_blif$34": {
+          "hide_name": 1,
+          "type": "$dff",
+          "parameters": {
+            "CLK_POLARITY": 1,
+            "WIDTH": 1
+          },
+          "attributes": {
+          },
+          "port_directions": {
+            "CLK": "input",
+            "D": "input",
+            "Q": "output"
+          },
+          "connections": {
+            "CLK": [ 2 ],
+            "D": [ 10 ],
+            "Q": [ 6 ]
+          }
+        },
+        "$auto$blifparse.cc:340:parse_blif$37": {
+          "hide_name": 1,
+          "type": "$dff",
+          "parameters": {
+            "CLK_POLARITY": 1,
+            "WIDTH": 1
+          },
+          "attributes": {
+          },
+          "port_directions": {
+            "CLK": "input",
+            "D": "input",
+            "Q": "output"
+          },
+          "connections": {
+            "CLK": [ 2 ],
+            "D": [ 11 ],
+            "Q": [ 7 ]
+          }
+        },
+        "$auto$blifparse.cc:340:parse_blif$40": {
+          "hide_name": 1,
+          "type": "$dff",
+          "parameters": {
+            "CLK_POLARITY": 1,
+            "WIDTH": 1
+          },
+          "attributes": {
+          },
+          "port_directions": {
+            "CLK": "input",
+            "D": "input",
+            "Q": "output"
+          },
+          "connections": {
+            "CLK": [ 2 ],
+            "D": [ 12 ],
+            "Q": [ 8 ]
+          }
+        },
+        "$auto$blifparse.cc:492:parse_blif$1": {
+          "hide_name": 1,
+          "type": "$lut",
+          "parameters": {
+            "LUT": 6,
+            "WIDTH": 2
+          },
+          "attributes": {
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 5, "1" ],
+            "Y": [ 13 ]
+          }
+        },
+        "$auto$blifparse.cc:492:parse_blif$10": {
+          "hide_name": 1,
+          "type": "$lut",
+          "parameters": {
+            "LUT": 8,
+            "WIDTH": 2
+          },
+          "attributes": {
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 6, "0" ],
+            "Y": [ 14 ]
+          }
+        },
+        "$auto$blifparse.cc:492:parse_blif$11": {
+          "hide_name": 1,
+          "type": "$lut",
+          "parameters": {
+            "LUT": 8,
+            "WIDTH": 2
+          },
+          "attributes": {
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 6, 15 ],
+            "Y": [ 16 ]
+          }
+        },
+        "$auto$blifparse.cc:492:parse_blif$12": {
+          "hide_name": 1,
+          "type": "$lut",
+          "parameters": {
+            "LUT": 8,
+            "WIDTH": 2
+          },
+          "attributes": {
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ "0", 15 ],
+            "Y": [ 17 ]
+          }
+        },
+        "$auto$blifparse.cc:492:parse_blif$13": {
+          "hide_name": 1,
+          "type": "$lut",
+          "parameters": {
+            "LUT": 14,
+            "WIDTH": 2
+          },
+          "attributes": {
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 14, 16 ],
+            "Y": [ 18 ]
+          }
+        },
+        "$auto$blifparse.cc:492:parse_blif$14": {
+          "hide_name": 1,
+          "type": "$lut",
+          "parameters": {
+            "LUT": 14,
+            "WIDTH": 2
+          },
+          "attributes": {
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 18, 17 ],
+            "Y": [ 19 ]
+          }
+        },
+        "$auto$blifparse.cc:492:parse_blif$15": {
+          "hide_name": 1,
+          "type": "$lut",
+          "parameters": {
+            "LUT": 6,
+            "WIDTH": 2
+          },
+          "attributes": {
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 7, "0" ],
+            "Y": [ 20 ]
+          }
+        },
+        "$auto$blifparse.cc:492:parse_blif$16": {
+          "hide_name": 1,
+          "type": "$lut",
+          "parameters": {
+            "LUT": 6,
+            "WIDTH": 2
+          },
+          "attributes": {
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 20, 19 ],
+            "Y": [ 21 ]
+          }
+        },
+        "$auto$blifparse.cc:492:parse_blif$17": {
+          "hide_name": 1,
+          "type": "$lut",
+          "parameters": {
+            "LUT": 8,
+            "WIDTH": 2
+          },
+          "attributes": {
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 7, "0" ],
+            "Y": [ 22 ]
+          }
+        },
+        "$auto$blifparse.cc:492:parse_blif$18": {
+          "hide_name": 1,
+          "type": "$lut",
+          "parameters": {
+            "LUT": 8,
+            "WIDTH": 2
+          },
+          "attributes": {
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 7, 19 ],
+            "Y": [ 23 ]
+          }
+        },
+        "$auto$blifparse.cc:492:parse_blif$19": {
+          "hide_name": 1,
+          "type": "$lut",
+          "parameters": {
+            "LUT": 8,
+            "WIDTH": 2
+          },
+          "attributes": {
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ "0", 19 ],
+            "Y": [ 24 ]
+          }
+        },
+        "$auto$blifparse.cc:492:parse_blif$2": {
+          "hide_name": 1,
+          "type": "$lut",
+          "parameters": {
+            "LUT": 6,
+            "WIDTH": 2
+          },
+          "attributes": {
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 13, "0" ],
+            "Y": [ 25 ]
+          }
+        },
+        "$auto$blifparse.cc:492:parse_blif$20": {
+          "hide_name": 1,
+          "type": "$lut",
+          "parameters": {
+            "LUT": 14,
+            "WIDTH": 2
+          },
+          "attributes": {
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 22, 23 ],
+            "Y": [ 26 ]
+          }
+        },
+        "$auto$blifparse.cc:492:parse_blif$21": {
+          "hide_name": 1,
+          "type": "$lut",
+          "parameters": {
+            "LUT": 14,
+            "WIDTH": 2
+          },
+          "attributes": {
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 26, 24 ],
+            "Y": [ 27 ]
+          }
+        },
+        "$auto$blifparse.cc:492:parse_blif$22": {
+          "hide_name": 1,
+          "type": "$lut",
+          "parameters": {
+            "LUT": 6,
+            "WIDTH": 2
+          },
+          "attributes": {
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 8, "0" ],
+            "Y": [ 28 ]
+          }
+        },
+        "$auto$blifparse.cc:492:parse_blif$23": {
+          "hide_name": 1,
+          "type": "$lut",
+          "parameters": {
+            "LUT": 6,
+            "WIDTH": 2
+          },
+          "attributes": {
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 28, 27 ],
+            "Y": [ 29 ]
+          }
+        },
+        "$auto$blifparse.cc:492:parse_blif$29": {
+          "hide_name": 1,
+          "type": "$lut",
+          "parameters": {
+            "LUT": 216,
+            "WIDTH": 3
+          },
+          "attributes": {
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 3, 25, 5 ],
+            "Y": [ 30 ]
+          }
+        },
+        "$auto$blifparse.cc:492:parse_blif$3": {
+          "hide_name": 1,
+          "type": "$lut",
+          "parameters": {
+            "LUT": 8,
+            "WIDTH": 2
+          },
+          "attributes": {
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 5, "1" ],
+            "Y": [ 31 ]
+          }
+        },
+        "$auto$blifparse.cc:492:parse_blif$30": {
+          "hide_name": 1,
+          "type": "$lut",
+          "parameters": {
+            "LUT": 216,
+            "WIDTH": 3
+          },
+          "attributes": {
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 4, "0", 30 ],
+            "Y": [ 9 ]
+          }
+        },
+        "$auto$blifparse.cc:492:parse_blif$32": {
+          "hide_name": 1,
+          "type": "$lut",
+          "parameters": {
+            "LUT": 216,
+            "WIDTH": 3
+          },
+          "attributes": {
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 3, 32, 6 ],
+            "Y": [ 33 ]
+          }
+        },
+        "$auto$blifparse.cc:492:parse_blif$33": {
+          "hide_name": 1,
+          "type": "$lut",
+          "parameters": {
+            "LUT": 216,
+            "WIDTH": 3
+          },
+          "attributes": {
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 4, "0", 33 ],
+            "Y": [ 10 ]
+          }
+        },
+        "$auto$blifparse.cc:492:parse_blif$35": {
+          "hide_name": 1,
+          "type": "$lut",
+          "parameters": {
+            "LUT": 216,
+            "WIDTH": 3
+          },
+          "attributes": {
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 3, 21, 7 ],
+            "Y": [ 34 ]
+          }
+        },
+        "$auto$blifparse.cc:492:parse_blif$36": {
+          "hide_name": 1,
+          "type": "$lut",
+          "parameters": {
+            "LUT": 216,
+            "WIDTH": 3
+          },
+          "attributes": {
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 4, "0", 34 ],
+            "Y": [ 11 ]
+          }
+        },
+        "$auto$blifparse.cc:492:parse_blif$38": {
+          "hide_name": 1,
+          "type": "$lut",
+          "parameters": {
+            "LUT": 216,
+            "WIDTH": 3
+          },
+          "attributes": {
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 3, 29, 8 ],
+            "Y": [ 35 ]
+          }
+        },
+        "$auto$blifparse.cc:492:parse_blif$39": {
+          "hide_name": 1,
+          "type": "$lut",
+          "parameters": {
+            "LUT": 216,
+            "WIDTH": 3
+          },
+          "attributes": {
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 4, "0", 35 ],
+            "Y": [ 12 ]
+          }
+        },
+        "$auto$blifparse.cc:492:parse_blif$4": {
+          "hide_name": 1,
+          "type": "$lut",
+          "parameters": {
+            "LUT": 8,
+            "WIDTH": 2
+          },
+          "attributes": {
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 5, "0" ],
+            "Y": [ 36 ]
+          }
+        },
+        "$auto$blifparse.cc:492:parse_blif$5": {
+          "hide_name": 1,
+          "type": "$lut",
+          "parameters": {
+            "LUT": 8,
+            "WIDTH": 2
+          },
+          "attributes": {
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ "1", "0" ],
+            "Y": [ 37 ]
+          }
+        },
+        "$auto$blifparse.cc:492:parse_blif$6": {
+          "hide_name": 1,
+          "type": "$lut",
+          "parameters": {
+            "LUT": 14,
+            "WIDTH": 2
+          },
+          "attributes": {
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 31, 36 ],
+            "Y": [ 38 ]
+          }
+        },
+        "$auto$blifparse.cc:492:parse_blif$7": {
+          "hide_name": 1,
+          "type": "$lut",
+          "parameters": {
+            "LUT": 14,
+            "WIDTH": 2
+          },
+          "attributes": {
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 38, 37 ],
+            "Y": [ 15 ]
+          }
+        },
+        "$auto$blifparse.cc:492:parse_blif$8": {
+          "hide_name": 1,
+          "type": "$lut",
+          "parameters": {
+            "LUT": 6,
+            "WIDTH": 2
+          },
+          "attributes": {
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 6, "0" ],
+            "Y": [ 39 ]
+          }
+        },
+        "$auto$blifparse.cc:492:parse_blif$9": {
+          "hide_name": 1,
+          "type": "$lut",
+          "parameters": {
+            "LUT": 6,
+            "WIDTH": 2
+          },
+          "attributes": {
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 39, 15 ],
+            "Y": [ 32 ]
+          }
+        }
+      },
+      "netnames": {
+        "CONST0": {
+          "hide_name": 0,
+          "bits": [ "0" ],
+          "attributes": {
+          }
+        },
+        "CONST1": {
+          "hide_name": 0,
+          "bits": [ "1" ],
+          "attributes": {
+          }
+        },
+        "clk": {
+          "hide_name": 0,
+          "bits": [ 2 ],
+          "attributes": {
+          }
+        },
+        "count_0": {
+          "hide_name": 0,
+          "bits": [ 5 ],
+          "attributes": {
+            "init": 0
+          }
+        },
+        "count_1": {
+          "hide_name": 0,
+          "bits": [ 6 ],
+          "attributes": {
+            "init": 0
+          }
+        },
+        "count_2": {
+          "hide_name": 0,
+          "bits": [ 7 ],
+          "attributes": {
+            "init": 0
+          }
+        },
+        "count_3": {
+          "hide_name": 0,
+          "bits": [ 8 ],
+          "attributes": {
+            "init": 0
+          }
+        },
+        "enable": {
+          "hide_name": 0,
+          "bits": [ 3 ],
+          "attributes": {
+          }
+        },
+        "rst": {
+          "hide_name": 0,
+          "bits": [ 4 ],
+          "attributes": {
+          }
+        },
+        "tmp_ADD_0_0": {
+          "hide_name": 0,
+          "bits": [ 25 ],
+          "attributes": {
+          }
+        },
+        "tmp_ADD_0_1": {
+          "hide_name": 0,
+          "bits": [ 32 ],
+          "attributes": {
+          }
+        },
+        "tmp_ADD_0_2": {
+          "hide_name": 0,
+          "bits": [ 21 ],
+          "attributes": {
+          }
+        },
+        "tmp_ADD_0_3": {
+          "hide_name": 0,
+          "bits": [ 29 ],
+          "attributes": {
+          }
+        },
+        "tmp_and_1": {
+          "hide_name": 0,
+          "bits": [ 31 ],
+          "attributes": {
+          }
+        },
+        "tmp_and_13": {
+          "hide_name": 0,
+          "bits": [ 22 ],
+          "attributes": {
+          }
+        },
+        "tmp_and_14": {
+          "hide_name": 0,
+          "bits": [ 23 ],
+          "attributes": {
+          }
+        },
+        "tmp_and_15": {
+          "hide_name": 0,
+          "bits": [ 24 ],
+          "attributes": {
+          }
+        },
+        "tmp_and_2": {
+          "hide_name": 0,
+          "bits": [ 36 ],
+          "attributes": {
+          }
+        },
+        "tmp_and_3": {
+          "hide_name": 0,
+          "bits": [ 37 ],
+          "attributes": {
+          }
+        },
+        "tmp_and_7": {
+          "hide_name": 0,
+          "bits": [ 14 ],
+          "attributes": {
+          }
+        },
+        "tmp_and_8": {
+          "hide_name": 0,
+          "bits": [ 16 ],
+          "attributes": {
+          }
+        },
+        "tmp_and_9": {
+          "hide_name": 0,
+          "bits": [ 17 ],
+          "attributes": {
+          }
+        },
+        "tmp_mux_24": {
+          "hide_name": 0,
+          "bits": [ 30 ],
+          "attributes": {
+          }
+        },
+        "tmp_mux_25": {
+          "hide_name": 0,
+          "bits": [ 9 ],
+          "attributes": {
+          }
+        },
+        "tmp_mux_26": {
+          "hide_name": 0,
+          "bits": [ 33 ],
+          "attributes": {
+          }
+        },
+        "tmp_mux_27": {
+          "hide_name": 0,
+          "bits": [ 10 ],
+          "attributes": {
+          }
+        },
+        "tmp_mux_28": {
+          "hide_name": 0,
+          "bits": [ 34 ],
+          "attributes": {
+          }
+        },
+        "tmp_mux_29": {
+          "hide_name": 0,
+          "bits": [ 11 ],
+          "attributes": {
+          }
+        },
+        "tmp_mux_30": {
+          "hide_name": 0,
+          "bits": [ 35 ],
+          "attributes": {
+          }
+        },
+        "tmp_mux_31": {
+          "hide_name": 0,
+          "bits": [ 12 ],
+          "attributes": {
+          }
+        },
+        "tmp_or_10": {
+          "hide_name": 0,
+          "bits": [ 18 ],
+          "attributes": {
+          }
+        },
+        "tmp_or_11": {
+          "hide_name": 0,
+          "bits": [ 19 ],
+          "attributes": {
+          }
+        },
+        "tmp_or_16": {
+          "hide_name": 0,
+          "bits": [ 26 ],
+          "attributes": {
+          }
+        },
+        "tmp_or_17": {
+          "hide_name": 0,
+          "bits": [ 27 ],
+          "attributes": {
+          }
+        },
+        "tmp_or_4": {
+          "hide_name": 0,
+          "bits": [ 38 ],
+          "attributes": {
+          }
+        },
+        "tmp_or_5": {
+          "hide_name": 0,
+          "bits": [ 15 ],
+          "attributes": {
+          }
+        },
+        "tmp_xor_0": {
+          "hide_name": 0,
+          "bits": [ 13 ],
+          "attributes": {
+          }
+        },
+        "tmp_xor_12": {
+          "hide_name": 0,
+          "bits": [ 20 ],
+          "attributes": {
+          }
+        },
+        "tmp_xor_18": {
+          "hide_name": 0,
+          "bits": [ 28 ],
+          "attributes": {
+          }
+        },
+        "tmp_xor_6": {
+          "hide_name": 0,
+          "bits": [ 39 ],
+          "attributes": {
+          }
+        }
+      }
+    }
+  }
+}
